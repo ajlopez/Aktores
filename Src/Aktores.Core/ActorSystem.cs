@@ -22,6 +22,8 @@
             if (!string.IsNullOrWhiteSpace(name))
                 actors[name] = actorref;
 
+            actor.Self = actorref;
+
             return actorref;
         }
 

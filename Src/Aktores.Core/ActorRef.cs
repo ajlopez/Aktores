@@ -14,9 +14,9 @@
             this.actor = actor;
         }
 
-        public void Tell(object message)
+        public void Tell(object message, ActorRef sender = null)
         {
-            this.actor.Tell(message);
+            this.actor.Tell(message, sender);
         }
     }
 }

@@ -53,7 +53,28 @@
             var result = system.ActorOf(actor);
 
             Assert.IsNotNull(result);
+            Assert.AreSame(result, actor.Self);
             result.Tell(1);
+
+            wait.WaitOne();
+
+            Assert.AreEqual(1, total);
+        }
+
+        [TestMethod]
+        public void CreateAndUseForwardActor()
+        {
+            int total = 0;
+            EventWaitHandle wait = new AutoResetEvent(false);
+
+            Actor actor = new LambdaActor(c => { total += (int)c; wait.Set(); });
+
+            ActorSystem system = new ActorSystem();
+
+            var actorref = system.ActorOf(actor);
+            Actor forwarder = new ForwardActor(actorref);
+
+            forwarder.Tell(1);
 
             wait.WaitOne();
 
@@ -80,6 +101,21 @@
             protected override void Receive(object message)
             {
                 this.fn(message);
+            }
+        }
+
+        private class ForwardActor : Actor
+        {
+            private ActorRef actorref;
+
+            public ForwardActor(ActorRef actorref)
+            {
+                this.actorref = actorref;
+            }
+
+            protected override void Receive(object message)
+            {
+                this.actorref.Tell(message, this.Sender);
             }
         }
     }

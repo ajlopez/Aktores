@@ -11,15 +11,20 @@
     {
         private bool started = false;
         private Thread thread;
-        private BlockingCollection<object> queue = new BlockingCollection<object>();
+        private BlockingCollection<ActorMessage> queue = new BlockingCollection<ActorMessage>();
+        private ActorRef sender;
 
-        public void Tell(object message)
+        public ActorRef Sender { get { return this.sender; } }
+
+        public ActorRef Self { get; internal set; }
+
+        public void Tell(object message, ActorRef sender = null)
         {
             if (!this.started)
                 lock(this)
                     this.Start();
 
-            this.queue.Add(message);
+            this.queue.Add(new ActorMessage(message, sender));
         }
 
         public void Start()
@@ -39,7 +44,12 @@
         private void Run()
         {
             while (true)
-                this.Receive(this.queue.Take());
+            {
+                var message = this.queue.Take();
+
+                this.sender = message.Sender;
+                this.Receive(message.Message);
+            }
         }
     }
 }
