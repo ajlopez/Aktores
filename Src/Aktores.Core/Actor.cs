@@ -13,7 +13,7 @@ using System.Threading;
         private Thread thread;
         private BlockingCollection<object> queue = new BlockingCollection<object>();
 
-        public void SendMessage(object message)
+        public void Tell(object message)
         {
             if (!this.started)
                 lock(this)
@@ -34,12 +34,12 @@ using System.Threading;
             this.thread.Start();
         }
 
-        protected abstract void ReceiveMessage(object message);
+        protected abstract void Receive(object message);
 
         private void Run()
         {
             while (true)
-                this.ReceiveMessage(this.queue.Take());
+                this.Receive(this.queue.Take());
         }
     }
 }

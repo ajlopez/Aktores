@@ -35,7 +35,7 @@
 
         private class MyActor : Actor
         {
-            protected override void ReceiveMessage(object message)
+            protected override void Receive(object message)
             {
                 throw new NotImplementedException();
             }

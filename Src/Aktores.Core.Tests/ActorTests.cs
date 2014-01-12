@@ -15,7 +15,7 @@
 
             Actor actor = new LambdaActor(c => { total += (int)c; wait.Set(); });
 
-            actor.SendMessage(1);
+            actor.Tell(1);
 
             wait.WaitOne();
 
@@ -30,9 +30,9 @@
 
             Actor actor = new LambdaActor(c => { total += (int)c; if (total >= 6) wait.Set(); });
 
-            actor.SendMessage(1);
-            actor.SendMessage(2);
-            actor.SendMessage(3);
+            actor.Tell(1);
+            actor.Tell(2);
+            actor.Tell(3);
 
             wait.WaitOne();
 
@@ -48,7 +48,7 @@
                 this.fn = fn;
             }
 
-            protected override void ReceiveMessage(object message)
+            protected override void Receive(object message)
             {
                 this.fn(message);
             }
