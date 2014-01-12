@@ -20,5 +20,10 @@
         {
             this.actor.Tell(message, sender);
         }
+
+        public bool IsRunning()
+        {
+            return this.actor.IsRunning();
+        }
     }
 }

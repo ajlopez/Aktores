@@ -54,11 +54,19 @@
 
             Assert.IsNotNull(result);
             Assert.AreSame(result, actor.Self);
+            Assert.IsTrue(result.IsRunning());
+            Assert.IsTrue(actor.IsRunning());
+
             result.Tell(1);
 
             wait.WaitOne();
 
             Assert.AreEqual(1, total);
+            system.Stop(result);
+
+            // TODO better time management
+            Thread.Sleep(1000);
+            Assert.IsFalse(result.IsRunning());
         }
 
         [TestMethod]
