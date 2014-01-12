@@ -20,7 +20,7 @@
             var actorref = new ActorRef(actor);
 
             if (!string.IsNullOrWhiteSpace(name))
-                actors[name] = actorref;
+                this.actors[name] = actorref;
 
             actor.Self = actorref;
             actor.Context = this;
@@ -32,8 +32,8 @@
 
         public ActorRef ActorFor(string name)
         {
-            if (actors.ContainsKey(name))
-                return actors[name];
+            if (this.actors.ContainsKey(name))
+                return this.actors[name];
 
             return null;
         }

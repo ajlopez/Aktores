@@ -28,7 +28,7 @@
         public void Tell(object message, ActorRef sender = null)
         {
             if (!this.started)
-                lock(this)
+                lock (this)
                     this.Start();
 
             this.queue.Add(new ActorMessage(message, sender));
