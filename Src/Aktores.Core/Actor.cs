@@ -16,7 +16,6 @@
         private Thread thread;
         private BlockingCollection<ActorMessage> queue = new BlockingCollection<ActorMessage>();
         private ActorRef sender;
-        private ActorSystem context;
 
         public ActorRef Sender { get { return this.sender; } }
 

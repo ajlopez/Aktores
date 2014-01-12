@@ -7,6 +7,8 @@
 
     public class ActorSystem : ActorRefFactory
     {
+        private IList<ActorRef> actorrefs = new List<ActorRef>();
+
         public override ActorRef ActorOf(Type t, string name = null)
         {
             var actor = (Actor)Activator.CreateInstance(t);
@@ -26,12 +28,20 @@
             actor.Initialize();
             actor.Start();
 
+            this.actorrefs.Add(actorref);
+
             return actorref;
         }
 
         public override void Stop(ActorRef actorref)
         {
             actorref.Actor.Stop();
+        }
+
+        public void Shutdown()
+        {
+            foreach (var actorref in this.actorrefs)
+                this.Stop(actorref);
         }
     }
 }

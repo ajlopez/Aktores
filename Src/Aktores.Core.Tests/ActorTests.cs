@@ -15,7 +15,9 @@
 
             Actor actor = new LambdaActor(c => { total += (int)c; wait.Set(); });
 
+            Assert.IsFalse(actor.IsRunning());
             actor.Tell(1);
+            Assert.IsTrue(actor.IsRunning());
 
             wait.WaitOne();
 
@@ -30,9 +32,11 @@
 
             Actor actor = new LambdaActor(c => { total += (int)c; if (total >= 6) wait.Set(); });
 
+            Assert.IsFalse(actor.IsRunning());
             actor.Tell(1);
             actor.Tell(2);
             actor.Tell(3);
+            Assert.IsTrue(actor.IsRunning());
 
             wait.WaitOne();
 

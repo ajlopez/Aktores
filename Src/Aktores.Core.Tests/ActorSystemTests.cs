@@ -89,6 +89,26 @@
             Assert.AreEqual(1, total);
         }
 
+        [TestMethod]
+        public void CreateActorsAndSystemShutdown()
+        {
+            ActorSystem system = new ActorSystem();
+
+            var ref1 = system.ActorOf(typeof(MyActor));
+            var ref2 = system.ActorOf(typeof(MyActor));
+
+            Assert.IsTrue(ref1.IsRunning());
+            Assert.IsTrue(ref2.IsRunning());
+
+            system.Shutdown();
+
+            // TODO better time management
+            Thread.Sleep(1000);
+
+            Assert.IsFalse(ref1.IsRunning());
+            Assert.IsFalse(ref2.IsRunning());
+        }
+
         private class MyActor : Actor
         {
             protected override void Receive(object message)
