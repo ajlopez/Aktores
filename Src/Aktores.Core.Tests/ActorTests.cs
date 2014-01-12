@@ -8,10 +8,10 @@
     public class ActorTests
     {
         [TestMethod]
-        public void SendMessage()
+        public void SendOneMessage()
         {
             int total = 0;
-            AutoResetEvent wait = new AutoResetEvent(false);
+            EventWaitHandle wait = new AutoResetEvent(false);
 
             Actor actor = new LambdaActor(c => { total += (int)c; wait.Set(); });
 
@@ -20,6 +20,23 @@
             wait.WaitOne();
 
             Assert.AreEqual(1, total);
+        }
+
+        [TestMethod]
+        public void SendThreeMessages()
+        {
+            int total = 0;
+            EventWaitHandle wait = new AutoResetEvent(false);
+
+            Actor actor = new LambdaActor(c => { total += (int)c; if (total >= 6) wait.Set(); });
+
+            actor.SendMessage(1);
+            actor.SendMessage(2);
+            actor.SendMessage(3);
+
+            wait.WaitOne();
+
+            Assert.AreEqual(6, total);
         }
 
         private class LambdaActor : Actor

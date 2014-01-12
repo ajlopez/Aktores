@@ -17,4 +17,7 @@ Work in Progress
 
 - [BlockingCollection Overview](http://msdn.microsoft.com/en-us/library/dd997371(v=vs.100).aspx)
 - [BlockingCollection<T> Class](http://msdn.microsoft.com/en-us/library/dd267312(v=vs.100).aspx)
+- [AutoResetEvent Class](http://msdn.microsoft.com/en-us/library/system.threading.autoresetevent(v=vs.100).aspx)
+
+
 
