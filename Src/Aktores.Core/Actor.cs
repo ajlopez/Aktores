@@ -34,7 +34,9 @@
             this.queue.Add(new ActorMessage(message, sender));
         }
 
-        public void Start()
+        protected abstract void Receive(object message);
+
+        internal void Start()
         {
             if (this.started)
                 return;
@@ -45,8 +47,6 @@
             this.thread = new Thread(ts);
             this.thread.Start();
         }
-
-        protected abstract void Receive(object message);
 
         private void Run()
         {

@@ -26,6 +26,7 @@
             actor.Context = this;
 
             actor.Initialize();
+            actor.Start();
 
             return actorref;
         }

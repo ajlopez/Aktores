@@ -18,6 +18,7 @@ Work in Progress
 - [Akka 2.2.3 Scala Documentation](http://doc.akka.io/docs/akka/2.2.3/scala.html)
 - [Akka 2.0 ActorSystem](http://doc.akka.io/api/akka/2.0/akka/actor/ActorSystem.html)
 - [Akka 2.0 ActorRef](http://doc.akka.io/api/akka/2.0/akka/actor/ActorRef.html)
+- [Akka 2.0 ActorContext](http://doc.akka.io/api/akka/2.0/akka/actor/ActorContext.html)
 - [Akka 2.0 Actor](http://doc.akka.io/api/akka/2.0/akka/actor/Actor.html)
 
 ### .NET
