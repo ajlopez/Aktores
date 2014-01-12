@@ -23,6 +23,9 @@
                 actors[name] = actorref;
 
             actor.Self = actorref;
+            actor.Context = this;
+
+            actor.Initialize();
 
             return actorref;
         }

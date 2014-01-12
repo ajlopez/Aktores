@@ -13,10 +13,17 @@
         private Thread thread;
         private BlockingCollection<ActorMessage> queue = new BlockingCollection<ActorMessage>();
         private ActorRef sender;
+        private ActorSystem context;
 
         public ActorRef Sender { get { return this.sender; } }
 
         public ActorRef Self { get; internal set; }
+
+        public ActorSystem Context { get; internal set; }
+
+        public virtual void Initialize()
+        {
+        }
 
         public void Tell(object message, ActorRef sender = null)
         {
