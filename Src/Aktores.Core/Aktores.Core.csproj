@@ -43,6 +43,7 @@
     <Compile Include="Actor.cs" />
     <Compile Include="ActorMessage.cs" />
     <Compile Include="ActorRef.cs" />
+    <Compile Include="ActorRefFactory.cs" />
     <Compile Include="ActorSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

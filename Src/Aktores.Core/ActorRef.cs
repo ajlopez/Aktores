@@ -14,6 +14,8 @@
             this.actor = actor;
         }
 
+        internal Actor Actor { get { return this.actor; } }
+
         public void Tell(object message, ActorRef sender = null)
         {
             this.actor.Tell(message, sender);

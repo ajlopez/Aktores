@@ -48,9 +48,14 @@
             this.thread.Start();
         }
 
+        internal void Stop()
+        {
+            this.started = false;
+        }
+
         private void Run()
         {
-            while (true)
+            while (this.started)
             {
                 var message = this.queue.Take();
 

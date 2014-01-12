@@ -5,22 +5,20 @@
     using System.Linq;
     using System.Text;
 
-    public class ActorSystem
+    public class ActorSystem : ActorRefFactory
     {
-        private IDictionary<string, ActorRef> actors = new Dictionary<string, ActorRef>();
-
-        public ActorRef ActorOf(Type t, string name = null)
+        public override ActorRef ActorOf(Type t, string name = null)
         {
             var actor = (Actor)Activator.CreateInstance(t);
             return this.ActorOf(actor, name);
         }
 
-        public ActorRef ActorOf(Actor actor, string name = null)
+        public override ActorRef ActorOf(Actor actor, string name = null)
         {
             var actorref = new ActorRef(actor);
 
             if (!string.IsNullOrWhiteSpace(name))
-                this.actors[name] = actorref;
+                this.Register(actorref, name);
 
             actor.Self = actorref;
             actor.Context = this;
@@ -31,12 +29,9 @@
             return actorref;
         }
 
-        public ActorRef ActorFor(string name)
+        public override void Stop(ActorRef actorref)
         {
-            if (this.actors.ContainsKey(name))
-                return this.actors[name];
-
-            return null;
+            actorref.Actor.Stop();
         }
     }
 }
