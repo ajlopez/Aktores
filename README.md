@@ -4,6 +4,10 @@ Akka-like actor model implementation in C#.
 
 Work in Progress
 
+## Samples
+
+- [Pi](https://github.com/ajlopez/Aktores/tree/master/Samples/Pi) Pi calculation sample.
+
 ## References
 
 ### Akka
