@@ -7,19 +7,25 @@
 
     public class ActorSystem
     {
-        private IDictionary<string, Actor> actors = new Dictionary<string, Actor>();
+        private IDictionary<string, ActorRef> actors = new Dictionary<string, ActorRef>();
 
-        public Actor ActorOf(Type t, string name = null)
+        public ActorRef ActorOf(Type t, string name = null)
         {
             var actor = (Actor)Activator.CreateInstance(t);
-
-            if (!string.IsNullOrWhiteSpace(name))
-                actors[name] = actor;
-
-            return actor;
+            return this.ActorOf(actor, name);
         }
 
-        public Actor ActorFor(string name)
+        public ActorRef ActorOf(Actor actor, string name = null)
+        {
+            var actorref = new ActorRef(actor);
+
+            if (!string.IsNullOrWhiteSpace(name))
+                actors[name] = actorref;
+
+            return actorref;
+        }
+
+        public ActorRef ActorFor(string name)
         {
             if (actors.ContainsKey(name))
                 return actors[name];
