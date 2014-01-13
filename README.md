@@ -22,6 +22,9 @@ Work in Progress
 - [Akka 2.0 ActorContext](http://doc.akka.io/api/akka/2.0/akka/actor/ActorContext.html)
 - [Akka 2.0 ActorRefFactory](http://doc.akka.io/api/akka/2.0/akka/actor/ActorRefFactory.html)
 - [Akka 2.0 Actor](http://doc.akka.io/api/akka/2.0/akka/actor/Actor.html)
+- [Scalability of Fork Join Pool](http://letitcrash.com/post/17607272336/scalability-of-fork-join-pool)
+- [Dispatchers](http://doc.akka.io/docs/akka/snapshot/scala/dispatchers.html)
+- [scala.concurrent.forkjoin.ForkJoinPool.scan() taking up lots of CPU cycles](https://groups.google.com/forum/#!topic/akka-user/6HKTvw4yBnU)
 
 ### .NET
 
