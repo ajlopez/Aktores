@@ -25,6 +25,7 @@ Work in Progress
 - [Scalability of Fork Join Pool](http://letitcrash.com/post/17607272336/scalability-of-fork-join-pool)
 - [Dispatchers](http://doc.akka.io/docs/akka/snapshot/scala/dispatchers.html)
 - [scala.concurrent.forkjoin.ForkJoinPool.scan() taking up lots of CPU cycles](https://groups.google.com/forum/#!topic/akka-user/6HKTvw4yBnU)
+- [Mailboxes](http://doc.akka.io/docs/akka/snapshot/scala/mailboxes.html) See Special Semantics of system.actorOf
 
 ### .NET
 
