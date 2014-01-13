@@ -26,6 +26,7 @@ Work in Progress
 - [Dispatchers](http://doc.akka.io/docs/akka/snapshot/scala/dispatchers.html)
 - [scala.concurrent.forkjoin.ForkJoinPool.scan() taking up lots of CPU cycles](https://groups.google.com/forum/#!topic/akka-user/6HKTvw4yBnU)
 - [Mailboxes](http://doc.akka.io/docs/akka/snapshot/scala/mailboxes.html) See Special Semantics of system.actorOf
+- [Akka bounded mailbox implementation using LMAX Disruptor](https://github.com/yngui/akka-disruptor)
 
 ### .NET
 
