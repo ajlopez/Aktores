@@ -15,6 +15,8 @@
 
         public abstract void Stop(ActorRef actorref);
 
+        internal IEnumerable<ActorRef> ActorRefs { get { return this.actors.Values; } }
+
         public ActorRef ActorFor(string name)
         {
             if (this.actors.ContainsKey(name))

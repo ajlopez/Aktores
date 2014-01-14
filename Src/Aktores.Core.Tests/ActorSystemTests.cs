@@ -54,8 +54,6 @@
 
             Assert.IsNotNull(result);
             Assert.AreSame(result, actor.Self);
-            Assert.IsTrue(result.IsRunning());
-            Assert.IsTrue(actor.IsRunning());
 
             result.Tell(1);
 
@@ -66,7 +64,40 @@
 
             // TODO better time management
             Thread.Sleep(1000);
-            Assert.IsFalse(result.IsRunning());
+
+            Assert.AreEqual(ActorState.Stopped, result.State);
+            Assert.AreEqual(ActorState.Stopped, actor.State);
+        }
+
+        [TestMethod]
+        public void CreateActorRefUsingActorAndSendThreeMessages()
+        {
+            int total = 0;
+            EventWaitHandle wait = new AutoResetEvent(false);
+
+            Actor actor = new LambdaActor(c => { total += (int)c; if (total >= 6) wait.Set(); });
+
+            ActorSystem system = new ActorSystem();
+
+            var result = system.ActorOf(actor);
+
+            Assert.IsNotNull(result);
+            Assert.AreSame(result, actor.Self);
+
+            result.Tell(1);
+            result.Tell(2);
+            result.Tell(3);
+
+            wait.WaitOne();
+
+            Assert.AreEqual(6, total);
+            system.Stop(result);
+
+            // TODO better time management
+            Thread.Sleep(1000);
+
+            Assert.AreEqual(ActorState.Stopped, result.State);
+            Assert.AreEqual(ActorState.Stopped, actor.State);
         }
 
         [TestMethod]
@@ -82,7 +113,7 @@
             var actorref = system.ActorOf(actor);
             Actor forwarder = new ForwardActor(actorref);
 
-            forwarder.Tell(1);
+            forwarder.Receive(1);
 
             wait.WaitOne();
 
@@ -93,25 +124,34 @@
         public void CreateActorsAndSystemShutdown()
         {
             ActorSystem system = new ActorSystem();
+            Actor actor1 = new MyActor();
+            Actor actor2 = new MyActor();
 
-            var ref1 = system.ActorOf(typeof(MyActor));
-            var ref2 = system.ActorOf(typeof(MyActor));
+            Assert.AreEqual(ActorState.Created, actor1.State);
+            Assert.AreEqual(ActorState.Created, actor2.State);
 
-            Assert.IsTrue(ref1.IsRunning());
-            Assert.IsTrue(ref2.IsRunning());
+            var ref1 = system.ActorOf(actor1);
+            var ref2 = system.ActorOf(actor2);
+
+            Assert.AreEqual(ActorState.Running, ref1.State);
+            Assert.AreEqual(ActorState.Running, ref2.State);
+            Assert.AreEqual(ActorState.Running, actor1.State);
+            Assert.AreEqual(ActorState.Running, actor2.State);
 
             system.Shutdown();
 
             // TODO better time management
             Thread.Sleep(1000);
 
-            Assert.IsFalse(ref1.IsRunning());
-            Assert.IsFalse(ref2.IsRunning());
+            Assert.AreEqual(ActorState.Stopped, ref1.State);
+            Assert.AreEqual(ActorState.Stopped, ref2.State);
+            Assert.AreEqual(ActorState.Stopped, actor1.State);
+            Assert.AreEqual(ActorState.Stopped, actor2.State);
         }
 
         private class MyActor : Actor
         {
-            protected override void Receive(object message)
+            public override void Receive(object message)
             {
                 throw new NotImplementedException();
             }
@@ -126,7 +166,7 @@
                 this.fn = fn;
             }
 
-            protected override void Receive(object message)
+            public override void Receive(object message)
             {
                 this.fn(message);
             }
@@ -141,7 +181,7 @@
                 this.actorref = actorref;
             }
 
-            protected override void Receive(object message)
+            public override void Receive(object message)
             {
                 this.actorref.Tell(message, this.Sender);
             }

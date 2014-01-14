@@ -7,14 +7,18 @@
 
     internal class ActorMessage
     {
+        private Actor target;
         private object message;
         private ActorRef sender;
 
-        public ActorMessage(object message, ActorRef sender = null)
+        public ActorMessage(Actor target, object message, ActorRef sender = null)
         {
+            this.target = target;
             this.message = message;
             this.sender = sender;
         }
+
+        public Actor Target { get { return this.target; } }
 
         public object Message { get { return this.message; } }
 

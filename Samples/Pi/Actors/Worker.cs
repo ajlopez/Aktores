@@ -9,7 +9,7 @@
 
     public class Worker : Actor
     {
-        protected override void Receive(object message)
+        public override void Receive(object message)
         {
             if (message is Work) 
             {

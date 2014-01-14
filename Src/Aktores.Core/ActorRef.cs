@@ -8,22 +8,21 @@
     public class ActorRef
     {
         private Actor actor;
+        private ActorMessageQueue queue;
 
-        internal ActorRef(Actor actor)
+        internal ActorRef(Actor actor, ActorMessageQueue queue)
         {
             this.actor = actor;
+            this.queue = queue;
         }
 
         internal Actor Actor { get { return this.actor; } }
 
+        public ActorState State { get { return this.actor.State; } } 
+
         public void Tell(object message, ActorRef sender = null)
         {
-            this.actor.Tell(message, sender);
-        }
-
-        public bool IsRunning()
-        {
-            return this.actor.IsRunning();
+            this.queue.Add(new ActorMessage(this.actor, message, sender));
         }
     }
 }

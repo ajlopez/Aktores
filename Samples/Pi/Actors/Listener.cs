@@ -9,7 +9,7 @@
 
     public class Listener : Actor
     {
-        protected override void Receive(object message)
+        public override void Receive(object message)
         {
             double pi = ((PiAproximation)message).Value;
 

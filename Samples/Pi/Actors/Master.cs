@@ -35,7 +35,7 @@
                 this.workers[k] = this.Context.ActorOf(typeof(Worker));
         }
 
-        protected override void Receive(object message)
+        public override void Receive(object message)
         {
             if (message is Calculate)
             {

@@ -11,15 +11,10 @@
         public void SendOneMessage()
         {
             int total = 0;
-            EventWaitHandle wait = new AutoResetEvent(false);
 
-            Actor actor = new LambdaActor(c => { total += (int)c; wait.Set(); });
+            Actor actor = new LambdaActor(c => { total += (int)c; });
 
-            Assert.IsFalse(actor.IsRunning());
-            actor.Tell(1);
-            Assert.IsTrue(actor.IsRunning());
-
-            wait.WaitOne();
+            actor.Receive(1);
 
             Assert.AreEqual(1, total);
         }
@@ -28,17 +23,12 @@
         public void SendThreeMessages()
         {
             int total = 0;
-            EventWaitHandle wait = new AutoResetEvent(false);
 
-            Actor actor = new LambdaActor(c => { total += (int)c; if (total >= 6) wait.Set(); });
+            Actor actor = new LambdaActor(c => { total += (int)c; });
 
-            Assert.IsFalse(actor.IsRunning());
-            actor.Tell(1);
-            actor.Tell(2);
-            actor.Tell(3);
-            Assert.IsTrue(actor.IsRunning());
-
-            wait.WaitOne();
+            actor.Receive(1);
+            actor.Receive(2);
+            actor.Receive(3);
 
             Assert.AreEqual(6, total);
         }
@@ -52,7 +42,7 @@
                 this.fn = fn;
             }
 
-            protected override void Receive(object message)
+            public override void Receive(object message)
             {
                 this.fn(message);
             }

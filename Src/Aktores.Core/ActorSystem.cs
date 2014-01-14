@@ -7,7 +7,13 @@
 
     public class ActorSystem : ActorRefFactory
     {
-        private IList<ActorRef> actorrefs = new List<ActorRef>();
+        private ActorMessageQueue queue = new ActorMessageQueue();
+
+        public ActorSystem()
+        {
+            for (int k = 0; k < 10; k++)
+                (new Worker(this.queue)).Start();
+        }
 
         public override ActorRef ActorOf(Type t, string name = null)
         {
@@ -17,30 +23,35 @@
 
         public override ActorRef ActorOf(Actor actor, string name = null)
         {
-            var actorref = new ActorRef(actor);
+            var actorref = new ActorRef(actor, this.queue);
 
-            if (!string.IsNullOrWhiteSpace(name))
-                this.Register(actorref, name);
+            if (string.IsNullOrWhiteSpace(name))
+                name = Guid.NewGuid().ToString();
+
+            this.Register(actorref, name);
 
             actor.Self = actorref;
             actor.Context = this;
 
             actor.Initialize();
-            actor.Start();
 
-            this.actorrefs.Add(actorref);
+            lock (actor)
+                actor.Start();
 
             return actorref;
         }
 
         public override void Stop(ActorRef actorref)
         {
-            actorref.Actor.Stop();
+            lock (actorref.Actor)
+                actorref.Actor.Stop();
         }
 
         public void Shutdown()
         {
-            foreach (var actorref in this.actorrefs)
+            this.queue.Stop();
+
+            foreach (var actorref in this.ActorRefs)
                 this.Stop(actorref);
         }
     }
