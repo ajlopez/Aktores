@@ -27,6 +27,9 @@ Work in Progress
 - [scala.concurrent.forkjoin.ForkJoinPool.scan() taking up lots of CPU cycles](https://groups.google.com/forum/#!topic/akka-user/6HKTvw4yBnU)
 - [Mailboxes](http://doc.akka.io/docs/akka/snapshot/scala/mailboxes.html) See Special Semantics of system.actorOf
 - [Akka bounded mailbox implementation using LMAX Disruptor](https://github.com/yngui/akka-disruptor)
+- [Distributed workers with Akka and Scala](http://typesafe.com/activator/template/akka-distributed-workers)
+- [Distributed workers with Akka and Java](http://typesafe.com/activator/template/akka-distributed-workers-java)
+- [Typesafe Reactive Platform / Akka](http://typesafe.com/platform/runtime/akka)
 
 ### .NET
 
