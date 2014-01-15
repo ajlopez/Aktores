@@ -34,5 +34,7 @@ Work in Progress
 - BlockingCollection<T> Class http://msdn.microsoft.com/en-us/library/dd267312(v=vs.100).aspx
 - AutoResetEvent Class http://msdn.microsoft.com/en-us/library/system.threading.autoresetevent(v=vs.100).aspx
 
+### Hardware
 
+- [Multi-core processor](http://en.wikipedia.org/wiki/Multi-core_processor)
 
