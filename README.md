@@ -13,6 +13,7 @@ Work in Progress
 ### Akka
 
 - [Akka](http://akka.io/)
+- [Actors](http://doc.akka.io/docs/akka/snapshot/scala/actors.html)
 - [Akka Scala - Getting Started Tutorial](http://doc.akka.io/docs/akka/2.0.2/intro/getting-started-first-scala.html)
 - [Akka Java - Getting Started Tutorial](http://doc.akka.io/docs/akka/2.0.2/intro/getting-started-first-java.html)
 - [Akka Documentation](http://akka.io/docs/)
@@ -28,6 +29,7 @@ Work in Progress
 - [Mailboxes](http://doc.akka.io/docs/akka/snapshot/scala/mailboxes.html) See Special Semantics of system.actorOf
 - [Akka bounded mailbox implementation using LMAX Disruptor](https://github.com/yngui/akka-disruptor)
 - [Durable Mailboxes](http://doc.akka.io/docs/akka/2.0/modules/durable-mailbox.html)
+- [Ask: Send-And-Receive-Future](http://doc.akka.io/docs/akka/snapshot/scala/actors.html#ask-send-and-receive-future)
 
 ### .NET
 
