@@ -30,6 +30,9 @@ Work in Progress
 - [Akka bounded mailbox implementation using LMAX Disruptor](https://github.com/yngui/akka-disruptor)
 - [Durable Mailboxes](http://doc.akka.io/docs/akka/2.0/modules/durable-mailbox.html)
 - [Ask: Send-And-Receive-Future](http://doc.akka.io/docs/akka/snapshot/scala/actors.html#ask-send-and-receive-future)
+- [Distributed workers with Akka and Scala](http://typesafe.com/activator/template/akka-distributed-workers)
+- [Distributed workers with Akka and Java](http://typesafe.com/activator/template/akka-distributed-workers-java)
+- [Typesafe Reactive Platform / Akka](http://typesafe.com/platform/runtime/akka)
 
 ### .NET
 
