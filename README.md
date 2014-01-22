@@ -33,6 +33,7 @@ Work in Progress
 - [Distributed workers with Akka and Scala](http://typesafe.com/activator/template/akka-distributed-workers)
 - [Distributed workers with Akka and Java](http://typesafe.com/activator/template/akka-distributed-workers-java)
 - [Typesafe Reactive Platform / Akka](http://typesafe.com/platform/runtime/akka)
+- [Akka Microkernel](http://doc.akka.io/docs/akka/2.2.3/scala/microkernel.html)
 
 ### .NET
 
