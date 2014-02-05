@@ -35,6 +35,7 @@ Work in Progress
 - [Typesafe Reactive Platform / Akka](http://typesafe.com/platform/runtime/akka)
 - [Akka Microkernel](http://doc.akka.io/docs/akka/2.2.3/scala/microkernel.html)
 - [Distributed Publish Subscribe in Akka Cluster](http://doc.akka.io/docs/akka/2.2.3/contrib/distributed-pub-sub.html)
+- [Introduction to Akka I/O](http://hseeberger.github.io/blog/2013/06/17/introduction-to-akka-i-slash-o/)
 
 ### .NET
 
