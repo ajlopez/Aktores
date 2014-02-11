@@ -36,6 +36,7 @@ Work in Progress
 - [Akka Microkernel](http://doc.akka.io/docs/akka/2.2.3/scala/microkernel.html)
 - [Distributed Publish Subscribe in Akka Cluster](http://doc.akka.io/docs/akka/2.2.3/contrib/distributed-pub-sub.html)
 - [Introduction to Akka I/O](http://hseeberger.github.io/blog/2013/06/17/introduction-to-akka-i-slash-o/)
+- [The akka-camel module allows Untyped Actors to receive and send messages over a great variety of protocols and APIs](http://doc.akka.io/docs/akka/snapshot/scala/camel.html)
 
 ### .NET
 
