@@ -38,6 +38,11 @@ Work in Progress
 - [Introduction to Akka I/O](http://hseeberger.github.io/blog/2013/06/17/introduction-to-akka-i-slash-o/)
 - [The akka-camel module allows Untyped Actors to receive and send messages over a great variety of protocols and APIs](http://doc.akka.io/docs/akka/snapshot/scala/camel.html)
 
+### Java
+
+- [From Imperative Programming to Fork/Join to Parallel Streams in Java 8](http://www.infoq.com/articles/forkjoin-to-parallel-streams)
+- [Class ForkJoinPool](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ForkJoinPool.html)
+
 ### .NET
 
 - BlockingCollection Overview http://msdn.microsoft.com/en-us/library/dd997371(v=vs.100).aspx
