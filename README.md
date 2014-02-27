@@ -39,11 +39,19 @@ Work in Progress
 - [The akka-camel module allows Untyped Actors to receive and send messages over a great variety of protocols and APIs](http://doc.akka.io/docs/akka/snapshot/scala/camel.html)
 - [Agents](http://doc.akka.io/docs/akka/2.1.0/scala/agents.html)
 
+### Java
+
+- [From Imperative Programming to Fork/Join to Parallel Streams in Java 8](http://www.infoq.com/articles/forkjoin-to-parallel-streams)
+- [Class ForkJoinPool](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ForkJoinPool.html)
+
 ### .NET
 
 - BlockingCollection Overview http://msdn.microsoft.com/en-us/library/dd997371(v=vs.100).aspx
 - BlockingCollection<T> Class http://msdn.microsoft.com/en-us/library/dd267312(v=vs.100).aspx
 - AutoResetEvent Class http://msdn.microsoft.com/en-us/library/system.threading.autoresetevent(v=vs.100).aspx
+- [TPL and Traditional .NET Framework Asynchronous Programming](http://msdn.microsoft.com/en-us/library/dd997423.aspx)
+- [How to: Chain Multiple Tasks with Continuations](http://msdn.microsoft.com/en-us/library/dd537612) also http://msdn.microsoft.com/en-us/library/dd537612(v=vs.100).aspx
+- [Task Class](http://msdn.microsoft.com/en-us/library/system.threading.tasks.task)
 
 ### Hardware
 
