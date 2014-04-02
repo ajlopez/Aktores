@@ -24,7 +24,7 @@ Work in Progress
 - [Akka 2.0 ActorRefFactory](http://doc.akka.io/api/akka/2.0/akka/actor/ActorRefFactory.html)
 - [Akka 2.0 Actor](http://doc.akka.io/api/akka/2.0/akka/actor/Actor.html)
 - [Scalability of Fork Join Pool](http://letitcrash.com/post/17607272336/scalability-of-fork-join-pool)
-- [Dispatchers](http://doc.akka.io/docs/akka/snapshot/scala/dispatchers.html)
+- [Dispatchers](http://doc.akka.io/docs/akka/snapshot/scala/dispatchers.html) The key concept to understand underlying Akka implementation
 - [scala.concurrent.forkjoin.ForkJoinPool.scan() taking up lots of CPU cycles](https://groups.google.com/forum/#!topic/akka-user/6HKTvw4yBnU)
 - [Mailboxes](http://doc.akka.io/docs/akka/snapshot/scala/mailboxes.html) See Special Semantics of system.actorOf
 - [Akka bounded mailbox implementation using LMAX Disruptor](https://github.com/yngui/akka-disruptor)
@@ -38,11 +38,19 @@ Work in Progress
 - [Introduction to Akka I/O](http://hseeberger.github.io/blog/2013/06/17/introduction-to-akka-i-slash-o/)
 - [The akka-camel module allows Untyped Actors to receive and send messages over a great variety of protocols and APIs](http://doc.akka.io/docs/akka/snapshot/scala/camel.html)
 - [Agents](http://doc.akka.io/docs/akka/2.1.0/scala/agents.html)
+- [Akka and the Java Memory Model](http://doc.akka.io/docs/akka/snapshot/general/jmm.html)
+- [Non-blocking Message Flow with Akka Actors](http://www.typesafe.com/blog/non-blocking-message-flow-with-akka-actors)
+- [How can akka actor interact between threads](http://stackoverflow.com/questions/9541507/how-can-akka-actor-interact-between-threads)
+- [How java thread are heavy weight than scala / akka actors](http://stackoverflow.com/questions/15553857/how-java-thread-are-heavy-weight-than-scala-akka-actors)
 
 ### Java
 
 - [From Imperative Programming to Fork/Join to Parallel Streams in Java 8](http://www.infoq.com/articles/forkjoin-to-parallel-streams)
 - [Class ForkJoinPool](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ForkJoinPool.html)
+- [Java concurrency (multi-threading) - Tutorial](http://www.vogella.com/tutorials/JavaConcurrency/article.html)
+- [Threads pools with the Executor Framework](http://www.vogella.com/tutorials/JavaConcurrency/article.html#threadpools)
+- [Fork-Join in Java 7](http://www.vogella.com/tutorials/JavaConcurrency/article.html#forkjoin)
+- [ExecutorService](http://tutorials.jenkov.com/java-util-concurrent/executorservice.html)
 
 ### .NET
 
