@@ -6,16 +6,16 @@
     using System.Linq;
     using System.Text;
 
-    internal class Mailbox
+    internal class TaskQueue
     {
-        private BlockingCollection<ActorMessage> queue = new BlockingCollection<ActorMessage>();
+        private BlockingCollection<ActorTask> queue = new BlockingCollection<ActorTask>();
 
-        public void Add(ActorMessage message)
+        public void Add(ActorTask task)
         {
-            this.queue.Add(message);
+            this.queue.Add(task);
         }
 
-        public ActorMessage Take()
+        public ActorTask Take()
         {
             return this.queue.Take();
         }

@@ -60,6 +60,8 @@ Work in Progress
 - [TPL and Traditional .NET Framework Asynchronous Programming](http://msdn.microsoft.com/en-us/library/dd997423.aspx)
 - [How to: Chain Multiple Tasks with Continuations](http://msdn.microsoft.com/en-us/library/dd537612) also http://msdn.microsoft.com/en-us/library/dd537612(v=vs.100).aspx
 - [Task Class](http://msdn.microsoft.com/en-us/library/system.threading.tasks.task)
+- [is there a “try to lock, skip if timed out” operation in C#?](http://stackoverflow.com/questions/8546/is-there-a-try-to-lock-skip-if-timed-out-operation-in-c)
+- [C#, Can I check on a lock without trying to acquire it?](http://stackoverflow.com/questions/4974729/c-can-i-check-on-a-lock-without-trying-to-acquire-it)
 
 ### Hardware
 

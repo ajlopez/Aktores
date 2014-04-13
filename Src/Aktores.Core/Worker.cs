@@ -8,9 +8,9 @@
 
     internal class Worker
     {
-        private Mailbox queue;
+        private TaskQueue queue;
 
-        public Worker(Mailbox queue)
+        public Worker(TaskQueue queue)
         {
             this.queue = queue;
         }
@@ -27,16 +27,28 @@
         {
             while (true)
             {
-                var message = this.queue.Take();
+                var task = this.queue.Take();
 
-                if (message == null)
+                if (task == null)
                     return;
 
-                lock (message.Target) 
-                {
-                    message.Target.Sender = message.Sender;
-                    message.Target.Receive(message.Message);
-                }
+                if (Monitor.TryEnter(task.Actor))
+                    try
+                    {
+                        if (task.Actor.State == ActorState.Stopped)
+                            continue;
+
+                        var message = task.Mailbox.Take();
+
+                        task.Actor.Sender = message.Sender;
+                        task.Actor.Receive(message.Message);
+                    }
+                    finally
+                    {
+                        Monitor.Exit(task.Actor);
+                    }
+                else
+                    this.queue.Add(task);
             }
         }
     }
