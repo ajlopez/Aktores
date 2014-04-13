@@ -19,6 +19,12 @@
 
         public ActorSystem Context { get; internal set; }
 
+        public virtual void Initialize()
+        {
+        }
+
+        public abstract void Receive(object message);
+
         internal void Start()
         {
             this.state = ActorState.Running;
@@ -28,11 +34,5 @@
         {
             this.state = ActorState.Stopped;
         }
-
-        public virtual void Initialize()
-        {
-        }
-
-        public abstract void Receive(object message);
     }
 }

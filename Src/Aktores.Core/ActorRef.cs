@@ -16,9 +16,9 @@
             this.queue = queue;
         }
 
-        internal Actor Actor { get { return this.actor; } }
-
         public ActorState State { get { return this.actor.State; } } 
+
+        internal Actor Actor { get { return this.actor; } }
 
         public void Tell(object message, ActorRef sender = null)
         {

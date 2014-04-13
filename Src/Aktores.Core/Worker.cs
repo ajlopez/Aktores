@@ -32,7 +32,7 @@
                 if (message == null)
                     return;
 
-                lock(message.Target) 
+                lock (message.Target) 
                 {
                     message.Target.Sender = message.Sender;
                     message.Target.Receive(message.Message);

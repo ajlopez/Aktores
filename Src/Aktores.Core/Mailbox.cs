@@ -16,7 +16,7 @@
             if (this.stopped)
                 throw new InvalidOperationException("System was stopped");
 
-            queue.Add(message);
+            this.queue.Add(message);
         }
 
         public ActorMessage Take()
