@@ -7,7 +7,7 @@
 
     public class ActorSystem : ActorRefFactory
     {
-        private ActorMessageQueue queue = new ActorMessageQueue();
+        private Mailbox queue = new Mailbox();
 
         public ActorSystem()
         {

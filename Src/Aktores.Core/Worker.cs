@@ -8,9 +8,9 @@
 
     internal class Worker
     {
-        private ActorMessageQueue queue;
+        private Mailbox queue;
 
-        public Worker(ActorMessageQueue queue)
+        public Worker(Mailbox queue)
         {
             this.queue = queue;
         }

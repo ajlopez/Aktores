@@ -8,9 +8,9 @@
     public class ActorRef
     {
         private Actor actor;
-        private ActorMessageQueue queue;
+        private Mailbox queue;
 
-        internal ActorRef(Actor actor, ActorMessageQueue queue)
+        internal ActorRef(Actor actor, Mailbox queue)
         {
             this.actor = actor;
             this.queue = queue;

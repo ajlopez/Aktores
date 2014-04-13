@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Text;
 
-    internal class ActorMessageQueue
+    internal class Mailbox
     {
         private BlockingCollection<ActorMessage> queue = new BlockingCollection<ActorMessage>();
         private bool stopped;
