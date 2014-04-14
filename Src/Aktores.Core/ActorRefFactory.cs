@@ -9,13 +9,13 @@
     {
         private IDictionary<string, ActorRef> actors = new Dictionary<string, ActorRef>();
 
+        internal IEnumerable<ActorRef> ActorRefs { get { return this.actors.Values; } }
+
         public abstract ActorRef ActorOf(Type t, string name = null);
 
         public abstract ActorRef ActorOf(Actor actor, string name = null);
 
         public abstract void Stop(ActorRef actorref);
-
-        internal IEnumerable<ActorRef> ActorRefs { get { return this.actors.Values; } }
 
         public ActorRef ActorFor(string name)
         {

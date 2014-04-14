@@ -7,22 +7,25 @@
 
     public class ActorRef
     {
+        private ActorSystem system;
         private Actor actor;
-        private ActorMessageQueue queue;
+        private Mailbox mailbox;
 
-        internal ActorRef(Actor actor, ActorMessageQueue queue)
+        internal ActorRef(ActorSystem system, Actor actor, Mailbox mailbox)
         {
+            this.system = system;
             this.actor = actor;
-            this.queue = queue;
+            this.mailbox = mailbox;
         }
-
-        internal Actor Actor { get { return this.actor; } }
 
         public ActorState State { get { return this.actor.State; } } 
 
+        internal Actor Actor { get { return this.actor; } }
+
         public void Tell(object message, ActorRef sender = null)
         {
-            this.queue.Add(new ActorMessage(this.actor, message, sender));
+            this.mailbox.Add(new ActorMessage(this.actor, message, sender));
+            this.system.AddTask(new ActorTask(this.actor, this.mailbox));
         }
     }
 }

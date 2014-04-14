@@ -7,7 +7,7 @@
 
     public class ActorSystem : ActorRefFactory
     {
-        private ActorMessageQueue queue = new ActorMessageQueue();
+        private TaskQueue queue = new TaskQueue();
 
         public ActorSystem()
         {
@@ -23,7 +23,7 @@
 
         public override ActorRef ActorOf(Actor actor, string name = null)
         {
-            var actorref = new ActorRef(actor, this.queue);
+            var actorref = new ActorRef(this, actor, new Mailbox());
 
             if (string.IsNullOrWhiteSpace(name))
                 name = Guid.NewGuid().ToString();
@@ -43,16 +43,21 @@
 
         public override void Stop(ActorRef actorref)
         {
-            lock (actorref.Actor)
-                actorref.Actor.Stop();
+            actorref.Actor.Stop();
         }
 
         public void Shutdown()
         {
-            this.queue.Stop();
+            for (int k = 0; k < 10; k++)
+                this.queue.Add(null);
 
             foreach (var actorref in this.ActorRefs)
                 this.Stop(actorref);
+        }
+
+        internal void AddTask(ActorTask task)
+        {
+            this.queue.Add(task);
         }
     }
 }
