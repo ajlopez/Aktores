@@ -51,6 +51,7 @@ Work in Progress
 - [Threads pools with the Executor Framework](http://www.vogella.com/tutorials/JavaConcurrency/article.html#threadpools)
 - [Fork-Join in Java 7](http://www.vogella.com/tutorials/JavaConcurrency/article.html#forkjoin)
 - [ExecutorService](http://tutorials.jenkov.com/java-util-concurrent/executorservice.html)
+- [ForkJoinPool: the Other ExecutorService](http://blog.jessitron.com/2014/02/forkjoinpool-other-executorservice.html)
 
 ### .NET
 
