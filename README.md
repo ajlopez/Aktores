@@ -52,6 +52,7 @@ Work in Progress
 - [Fork-Join in Java 7](http://www.vogella.com/tutorials/JavaConcurrency/article.html#forkjoin)
 - [ExecutorService](http://tutorials.jenkov.com/java-util-concurrent/executorservice.html)
 - [ForkJoinPool: the Other ExecutorService](http://blog.jessitron.com/2014/02/forkjoinpool-other-executorservice.html)
+- [Comparision of different concurrency models: Actors, CSP, Disruptor and Threads](http://java-is-the-new-c.blogspot.com.ar/2014/01/comparision-of-different-concurrency.html)
 
 ### .NET
 
