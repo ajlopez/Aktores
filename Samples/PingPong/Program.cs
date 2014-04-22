@@ -11,7 +11,7 @@
     {
         public static void Main(string[] args)
         {
-            ActorSystem system = new ActorSystem();
+            ActorSystem system = new ActorSystem(2);
             var pingactor = new PingActor();
             var pongactor = new PongActor();
             
