@@ -8,10 +8,13 @@
     public class ActorSystem : ActorRefFactory
     {
         private TaskQueue queue = new TaskQueue();
+        private int nworkers;
 
-        public ActorSystem()
+        public ActorSystem(int nworkers = 10)
         {
-            for (int k = 0; k < 10; k++)
+            this.nworkers = nworkers;
+
+            for (int k = 0; k < nworkers; k++)
                 (new Worker(this.queue)).Start();
         }
 
@@ -48,7 +51,7 @@
 
         public void Shutdown()
         {
-            for (int k = 0; k < 10; k++)
+            for (int k = 0; k < this.nworkers; k++)
                 this.queue.Add(null);
 
             foreach (var actorref in this.ActorRefs)
