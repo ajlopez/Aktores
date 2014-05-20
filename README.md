@@ -42,6 +42,7 @@ Work in Progress
 - [Non-blocking Message Flow with Akka Actors](http://www.typesafe.com/blog/non-blocking-message-flow-with-akka-actors)
 - [How can akka actor interact between threads](http://stackoverflow.com/questions/9541507/how-can-akka-actor-interact-between-threads)
 - [How java thread are heavy weight than scala / akka actors](http://stackoverflow.com/questions/15553857/how-java-thread-are-heavy-weight-than-scala-akka-actors)
+- [Typed Actors](http://doc.akka.io/docs/akka/snapshot/scala/typed-actors.html)
 
 ### Java
 
