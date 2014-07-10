@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActorSystemTests.cs" />
+    <Compile Include="Communication\InputChannelTests.cs" />
+    <Compile Include="Communication\OutputChannelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ActorTests.cs" />
   </ItemGroup>

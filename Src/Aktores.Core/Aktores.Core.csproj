@@ -43,6 +43,9 @@
     <Compile Include="Actor.cs" />
     <Compile Include="ActorMessage.cs" />
     <Compile Include="ActorTask.cs" />
+    <Compile Include="Communication\InputChannel.cs" />
+    <Compile Include="Communication\OutputChannel.cs" />
+    <Compile Include="Communication\Types.cs" />
     <Compile Include="Mailbox.cs" />
     <Compile Include="ActorRef.cs" />
     <Compile Include="ActorRefFactory.cs" />
