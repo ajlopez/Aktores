@@ -8,11 +8,18 @@
 
     internal class Mailbox
     {
+        private ActorSystem system;
         private BlockingCollection<ActorMessage> queue = new BlockingCollection<ActorMessage>();
 
-        public void Add(ActorMessage message)
+        internal Mailbox(ActorSystem system)
+        {
+            this.system = system;
+        }
+
+        public void Add(Actor actor, ActorMessage message)
         {
             this.queue.Add(message);
+            this.system.AddTask(new ActorTask(actor, this));
         }
 
         public ActorMessage Take()

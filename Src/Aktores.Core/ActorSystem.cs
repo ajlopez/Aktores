@@ -26,7 +26,7 @@
 
         public override ActorRef ActorOf(Actor actor, string name = null)
         {
-            var actorref = new ActorRef(this, actor, new Mailbox());
+            var actorref = new ActorRef(actor, new Mailbox(this));
 
             if (string.IsNullOrWhiteSpace(name))
                 name = Guid.NewGuid().ToString();

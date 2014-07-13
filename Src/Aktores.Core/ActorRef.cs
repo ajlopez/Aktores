@@ -7,13 +7,11 @@
 
     public class ActorRef
     {
-        private ActorSystem system;
         private Actor actor;
         private Mailbox mailbox;
 
-        internal ActorRef(ActorSystem system, Actor actor, Mailbox mailbox)
+        internal ActorRef(Actor actor, Mailbox mailbox)
         {
-            this.system = system;
             this.actor = actor;
             this.mailbox = mailbox;
         }
@@ -24,8 +22,7 @@
 
         public void Tell(object message, ActorRef sender = null)
         {
-            this.mailbox.Add(new ActorMessage(message, sender));
-            this.system.AddTask(new ActorTask(this.actor, this.mailbox));
+            this.mailbox.Add(this.actor, new ActorMessage(message, sender));
         }
     }
 }
