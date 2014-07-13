@@ -19,6 +19,9 @@
 
         public ActorRef ActorFor(string name)
         {
+            if (name.StartsWith("/"))
+                name = name.Substring(1);
+
             if (this.actors.ContainsKey(name))
                 return this.actors[name];
 

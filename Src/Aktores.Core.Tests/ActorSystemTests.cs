@@ -41,6 +41,21 @@
         }
 
         [TestMethod]
+        public void ActorForUsingSlash()
+        {
+            ActorSystem system = new ActorSystem();
+
+            var result = system.ActorOf(typeof(MyActor), "myactor");
+
+            Assert.IsNotNull(result);
+
+            var result2 = system.ActorFor("/myactor");
+
+            Assert.IsNotNull(result2);
+            Assert.AreSame(result, result2);
+        }
+
+        [TestMethod]
         public void CreateActorRefUsingActorAndSendMessage()
         {
             int total = 0;
