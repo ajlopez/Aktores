@@ -17,7 +17,7 @@
 
         public ActorRef Self { get; internal set; }
 
-        public ActorSystem Context { get; internal set; }
+        public ActorContext Context { get; internal set; }
 
         public virtual void Initialize()
         {

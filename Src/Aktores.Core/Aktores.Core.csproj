@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actor.cs" />
+    <Compile Include="ActorContext.cs" />
     <Compile Include="ActorMessage.cs" />
     <Compile Include="ActorTask.cs" />
     <Compile Include="Communication\InputChannel.cs" />

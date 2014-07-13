@@ -34,7 +34,7 @@
             this.Register(actorref, name);
 
             actor.Self = actorref;
-            actor.Context = this;
+            actor.Context = new ActorContext(this);
 
             actor.Initialize();
 
