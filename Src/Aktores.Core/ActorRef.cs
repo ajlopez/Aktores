@@ -24,7 +24,7 @@
 
         public void Tell(object message, ActorRef sender = null)
         {
-            this.mailbox.Add(new ActorMessage(this.actor, message, sender));
+            this.mailbox.Add(new ActorMessage(message, sender));
             this.system.AddTask(new ActorTask(this.actor, this.mailbox));
         }
     }
