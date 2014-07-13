@@ -7,13 +7,29 @@
 
     public class ActorContext : ActorRefFactory
     {
-        ActorSystem system;
-        ActorRefFactory parent;
+        private ActorSystem system;
+        private ActorRefFactory parent;
+        private string path;
 
-        internal ActorContext(ActorSystem system)
+        internal ActorContext(ActorSystem system, string name)
         {
             this.system = system;
             this.parent = system;
+            this.path = "/" + name;
+        }
+
+        internal ActorContext(ActorContext parent, string name)
+        {
+            this.system = parent.system;
+            this.parent = parent;
+            this.path = parent.Path + "/" + name;
+        }
+
+        public string Path { get { return this.path; } }
+
+        public override void Stop(ActorRef actorref)
+        {
+            this.system.Stop(actorref);
         }
 
         internal override ActorRef CreateActorRef(Actor actor)
@@ -21,14 +37,9 @@
             return this.system.CreateActorRef(actor);
         }
 
-        internal override ActorContext CreateActorContext()
+        internal override ActorContext CreateActorContext(string name)
         {
-            throw new NotImplementedException();
-        }
-
-        public override void Stop(ActorRef actorref)
-        {
-            this.system.Stop(actorref);
+            return new ActorContext(this, name);
         }
     }
 }

@@ -27,7 +27,7 @@
             this.Register(actorref, name);
 
             actor.Self = actorref;
-            actor.Context = this.CreateActorContext();
+            actor.Context = this.CreateActorContext(name);
 
             actor.Initialize();
 
@@ -38,10 +38,6 @@
         }
 
         public abstract void Stop(ActorRef actorref);
-
-        internal abstract ActorRef CreateActorRef(Actor actor);
-
-        internal abstract ActorContext CreateActorContext();
 
         public ActorRef ActorFor(string name)
         {
@@ -58,5 +54,9 @@
         {
             this.actors[name] = actor;
         }
+
+        internal abstract ActorRef CreateActorRef(Actor actor);
+
+        internal abstract ActorContext CreateActorContext(string name);
     }
 }

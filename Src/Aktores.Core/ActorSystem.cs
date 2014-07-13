@@ -9,11 +9,9 @@
     {
         private TaskQueue queue = new TaskQueue();
         private int nworkers;
-        private ActorContext context;
 
         public ActorSystem(int nworkers = 10)
         {
-            this.context = new ActorContext(this);
             this.nworkers = nworkers;
 
             for (int k = 0; k < nworkers; k++)
@@ -44,9 +42,9 @@
             return new ActorRef(actor, new Mailbox(this));
         }
 
-        internal override ActorContext CreateActorContext()
+        internal override ActorContext CreateActorContext(string name)
         {
-            return new ActorContext(this);
+            return new ActorContext(this, name);
         }
     }
 }

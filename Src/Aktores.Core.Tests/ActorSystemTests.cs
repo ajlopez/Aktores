@@ -56,6 +56,21 @@
         }
 
         [TestMethod]
+        public void CreateActorAndChildActor()
+        {
+            Actor actor = new MyActor();
+            ActorSystem system = new ActorSystem();
+
+            var actorref = system.ActorOf(actor, "myactor");
+            var childactorref = actor.Context.ActorOf(typeof(MyActor), "mychildactor");
+
+            Assert.IsNotNull(actorref);
+            Assert.IsNotNull(childactorref);
+            //Assert.AreEqual("/myactor", actorref.Path);
+            //Assert.AreEqual("/myactor/mychildactor", childactorref.Path);
+        }
+
+        [TestMethod]
         public void CreateActorRefUsingActorAndSendMessage()
         {
             int total = 0;
