@@ -7,23 +7,28 @@
 
     public class ActorContext : ActorRefFactory
     {
-        public ActorContext(ActorRefFactory parent)
+        ActorSystem system;
+        ActorRefFactory parent;
+
+        internal ActorContext(ActorSystem system)
         {
+            this.system = system;
+            this.parent = system;
         }
 
-        public override ActorRef ActorOf(Type t, string name = null)
+        internal override ActorRef CreateActorRef(Actor actor)
         {
-            throw new NotImplementedException();
+            return this.system.CreateActorRef(actor);
         }
 
-        public override ActorRef ActorOf(Actor actor, string name = null)
+        internal override ActorContext CreateActorContext()
         {
             throw new NotImplementedException();
         }
 
         public override void Stop(ActorRef actorref)
         {
-            throw new NotImplementedException();
+            this.system.Stop(actorref);
         }
     }
 }

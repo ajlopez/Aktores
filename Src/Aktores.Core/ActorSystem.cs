@@ -9,39 +9,15 @@
     {
         private TaskQueue queue = new TaskQueue();
         private int nworkers;
+        private ActorContext context;
 
         public ActorSystem(int nworkers = 10)
         {
+            this.context = new ActorContext(this);
             this.nworkers = nworkers;
 
             for (int k = 0; k < nworkers; k++)
                 (new Worker(this.queue)).Start();
-        }
-
-        public override ActorRef ActorOf(Type t, string name = null)
-        {
-            var actor = (Actor)Activator.CreateInstance(t);
-            return this.ActorOf(actor, name);
-        }
-
-        public override ActorRef ActorOf(Actor actor, string name = null)
-        {
-            var actorref = new ActorRef(actor, new Mailbox(this));
-
-            if (string.IsNullOrWhiteSpace(name))
-                name = Guid.NewGuid().ToString();
-
-            this.Register(actorref, name);
-
-            actor.Self = actorref;
-            actor.Context = new ActorContext(this);
-
-            actor.Initialize();
-
-            lock (actor)
-                actor.Start();
-
-            return actorref;
         }
 
         public override void Stop(ActorRef actorref)
@@ -61,6 +37,16 @@
         internal void AddTask(ActorTask task)
         {
             this.queue.Add(task);
+        }
+
+        internal override ActorRef CreateActorRef(Actor actor)
+        {
+            return new ActorRef(actor, new Mailbox(this));
+        }
+
+        internal override ActorContext CreateActorContext()
+        {
+            return new ActorContext(this);
         }
     }
 }

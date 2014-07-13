@@ -11,11 +11,37 @@
 
         internal IEnumerable<ActorRef> ActorRefs { get { return this.actors.Values; } }
 
-        public abstract ActorRef ActorOf(Type t, string name = null);
+        public ActorRef ActorOf(Type t, string name = null)
+        {
+            var actor = (Actor)Activator.CreateInstance(t);
+            return this.ActorOf(actor, name);
+        }
 
-        public abstract ActorRef ActorOf(Actor actor, string name = null);
+        public ActorRef ActorOf(Actor actor, string name = null)
+        {
+            var actorref = this.CreateActorRef(actor);
+
+            if (string.IsNullOrWhiteSpace(name))
+                name = Guid.NewGuid().ToString();
+
+            this.Register(actorref, name);
+
+            actor.Self = actorref;
+            actor.Context = this.CreateActorContext();
+
+            actor.Initialize();
+
+            lock (actor)
+                actor.Start();
+
+            return actorref;
+        }
 
         public abstract void Stop(ActorRef actorref);
+
+        internal abstract ActorRef CreateActorRef(Actor actor);
+
+        internal abstract ActorContext CreateActorContext();
 
         public ActorRef ActorFor(string name)
         {
