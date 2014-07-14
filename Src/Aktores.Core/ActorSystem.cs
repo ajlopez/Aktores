@@ -42,9 +42,9 @@
             return new ActorRef(actor, new Mailbox(this));
         }
 
-        internal override ActorContext CreateActorContext(string name)
+        internal override ActorContext CreateActorContext()
         {
-            return new ActorContext(this, name);
+            return new ActorContext(this);
         }
     }
 }

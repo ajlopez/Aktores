@@ -27,7 +27,7 @@
             this.Register(actorref, name);
 
             actor.Self = actorref;
-            actor.Context = this.CreateActorContext(name);
+            actor.Context = this.CreateActorContext();
 
             actor.Initialize();
 
@@ -57,6 +57,6 @@
 
         internal abstract ActorRef CreateActorRef(Actor actor);
 
-        internal abstract ActorContext CreateActorContext(string name);
+        internal abstract ActorContext CreateActorContext();
     }
 }

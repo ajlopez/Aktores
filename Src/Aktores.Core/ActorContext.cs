@@ -9,23 +9,18 @@
     {
         private ActorSystem system;
         private ActorRefFactory parent;
-        private string path;
 
-        internal ActorContext(ActorSystem system, string name)
+        internal ActorContext(ActorSystem system)
         {
             this.system = system;
             this.parent = system;
-            this.path = "/" + name;
         }
 
-        internal ActorContext(ActorContext parent, string name)
+        internal ActorContext(ActorContext parent)
         {
             this.system = parent.system;
             this.parent = parent;
-            this.path = parent.Path + "/" + name;
         }
-
-        public string Path { get { return this.path; } }
 
         public override void Stop(ActorRef actorref)
         {
@@ -37,9 +32,9 @@
             return this.system.CreateActorRef(actor);
         }
 
-        internal override ActorContext CreateActorContext(string name)
+        internal override ActorContext CreateActorContext()
         {
-            return new ActorContext(this, name);
+            return new ActorContext(this);
         }
     }
 }
