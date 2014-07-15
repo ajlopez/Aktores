@@ -39,7 +39,7 @@
 
             newpath += name;
 
-            return this.system.CreateActorRef(actor, newpath);
+            return new ActorRef(actor, new Mailbox(this.system), newpath);
         }
 
         internal override ActorContext CreateActorContext(string path)
