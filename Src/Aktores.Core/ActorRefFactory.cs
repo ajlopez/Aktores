@@ -19,15 +19,15 @@
 
         public ActorRef ActorOf(Actor actor, string name = null)
         {
-            var actorref = this.CreateActorRef(actor);
-
             if (string.IsNullOrWhiteSpace(name))
                 name = Guid.NewGuid().ToString();
+
+            var actorref = this.CreateActorRef(actor, name);
 
             this.Register(actorref, name);
 
             actor.Self = actorref;
-            actor.Context = this.CreateActorContext();
+            actor.Context = this.CreateActorContext(actorref.Path);
 
             actor.Initialize();
 
@@ -55,8 +55,8 @@
             this.actors[name] = actor;
         }
 
-        internal abstract ActorRef CreateActorRef(Actor actor);
+        internal abstract ActorRef CreateActorRef(Actor actor, string name);
 
-        internal abstract ActorContext CreateActorContext();
+        internal abstract ActorContext CreateActorContext(string path);
     }
 }

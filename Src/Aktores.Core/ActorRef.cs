@@ -9,14 +9,18 @@
     {
         private Actor actor;
         private Mailbox mailbox;
+        private string path;
 
-        internal ActorRef(Actor actor, Mailbox mailbox)
+        internal ActorRef(Actor actor, Mailbox mailbox, string path)
         {
             this.actor = actor;
             this.mailbox = mailbox;
+            this.path = path;
         }
 
-        public ActorState State { get { return this.actor.State; } } 
+        public ActorState State { get { return this.actor.State; } }
+
+        public string Path { get { return this.path; } }
 
         internal Actor Actor { get { return this.actor; } }
 
