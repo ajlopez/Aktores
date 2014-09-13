@@ -37,14 +37,14 @@
             this.queue.Add(task);
         }
 
-        internal override ActorRef CreateActorRef(Actor actor)
+        internal override ActorRef CreateActorRef(Actor actor, string name)
         {
-            return new ActorRef(actor, new Mailbox(this));
+            return new ActorRef(actor, new Mailbox(this), "/" + name);
         }
 
-        internal override ActorContext CreateActorContext(string name)
+        internal override ActorContext CreateActorContext(string path)
         {
-            return new ActorContext(this, name);
+            return new ActorContext(this, path);
         }
     }
 }

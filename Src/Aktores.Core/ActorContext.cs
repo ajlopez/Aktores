@@ -11,35 +11,40 @@
         private ActorRefFactory parent;
         private string path;
 
-        internal ActorContext(ActorSystem system, string name)
+        internal ActorContext(ActorSystem system, string path)
         {
             this.system = system;
             this.parent = system;
-            this.path = "/" + name;
+            this.path = path;
         }
 
-        internal ActorContext(ActorContext parent, string name)
+        internal ActorContext(ActorContext parent, string path)
         {
             this.system = parent.system;
             this.parent = parent;
-            this.path = parent.Path + "/" + name;
+            this.path = path;
         }
-
-        public string Path { get { return this.path; } }
 
         public override void Stop(ActorRef actorref)
         {
             this.system.Stop(actorref);
         }
 
-        internal override ActorRef CreateActorRef(Actor actor)
+        internal override ActorRef CreateActorRef(Actor actor, string name)
         {
-            return this.system.CreateActorRef(actor);
+            string newpath = this.path;
+
+            if (!newpath.EndsWith("/"))
+                newpath += "/";
+
+            newpath += name;
+
+            return new ActorRef(actor, new Mailbox(this.system), newpath);
         }
 
-        internal override ActorContext CreateActorContext(string name)
+        internal override ActorContext CreateActorContext(string path)
         {
-            return new ActorContext(this, name);
+            return new ActorContext(this, path);
         }
     }
 }

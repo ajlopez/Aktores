@@ -66,8 +66,8 @@
 
             Assert.IsNotNull(actorref);
             Assert.IsNotNull(childactorref);
-            //Assert.AreEqual("/myactor", actorref.Path);
-            //Assert.AreEqual("/myactor/mychildactor", childactorref.Path);
+            Assert.AreEqual("/myactor", actorref.Path);
+            Assert.AreEqual("/myactor/mychildactor", childactorref.Path);
         }
 
         [TestMethod]
