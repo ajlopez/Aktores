@@ -40,5 +40,41 @@
             Assert.IsFalse(ActorPath.IsRelative("aktores://sys/foo"));
             Assert.IsFalse(ActorPath.IsRelative("aktores.tcp://sys@localhost:3000/foo"));
         }
+
+        [TestMethod]
+        public void SplitInFullPathInParts()
+        {
+            var path = new ActorPath("aktores.tcp://sys@localhost:3000/foo/actor");
+
+            Assert.AreEqual("aktores.tcp", path.Protocol);
+            Assert.AreEqual("sys", path.SystemName);
+            Assert.AreEqual("localhost", path.HostName);
+            Assert.AreEqual(3000, path.Port);
+            Assert.AreEqual("/foo/actor", path.ActorAddress);
+        }
+
+        [TestMethod]
+        public void SplitLocalPathInParts()
+        {
+            var path = new ActorPath("/foo/actor");
+
+            Assert.AreEqual("aktores", path.Protocol);
+            Assert.AreEqual("sys", path.SystemName);
+            Assert.IsNull(path.HostName);
+            Assert.AreEqual(0, path.Port);
+            Assert.AreEqual("/foo/actor", path.ActorAddress);
+        }
+
+        [TestMethod]
+        public void SplitPartialPathInParts()
+        {
+            var path = new ActorPath("//sys2/foo/actor");
+
+            Assert.AreEqual("aktores", path.Protocol);
+            Assert.AreEqual("sys2", path.SystemName);
+            Assert.IsNull(path.HostName);
+            Assert.AreEqual(0, path.Port);
+            Assert.AreEqual("/foo/actor", path.ActorAddress);
+        }
     }
 }
