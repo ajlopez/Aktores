@@ -46,6 +46,7 @@
     <Compile Include="Actor.cs" />
     <Compile Include="ActorContext.cs" />
     <Compile Include="ActorMessage.cs" />
+    <Compile Include="ActorPath.cs" />
     <Compile Include="ActorTask.cs" />
     <Compile Include="Communication\InputChannel.cs" />
     <Compile Include="Communication\OutputChannel.cs" />

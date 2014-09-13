@@ -48,6 +48,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActorPathTests.cs" />
     <Compile Include="ActorSystemTests.cs" />
     <Compile Include="Communication\InputChannelTests.cs" />
     <Compile Include="Communication\OutputChannelTests.cs" />
