@@ -18,6 +18,14 @@
         }
 
         [TestMethod]
+        public void GetPrefix()
+        {
+            ActorSystem system = new ActorSystem();
+
+            Assert.AreEqual("/", system.Prefix);
+        }
+
+        [TestMethod]
         public void GetNullActorRefForUnknownPath()
         {
             ActorSystem system = new ActorSystem();

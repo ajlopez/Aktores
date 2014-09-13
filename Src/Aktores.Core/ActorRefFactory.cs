@@ -7,9 +7,20 @@
 
     public abstract class ActorRefFactory
     {
+        private string prefix;
         private IDictionary<string, ActorRef> actors = new Dictionary<string, ActorRef>();
 
         internal IEnumerable<ActorRef> ActorRefs { get { return this.actors.Values; } }
+
+        public ActorRefFactory(string prefix)
+        {
+            if (!prefix.EndsWith("/"))
+                prefix += "/";
+
+            this.prefix = prefix;
+        }
+
+        public string Prefix { get { return this.prefix; } }
 
         public ActorRef ActorOf(Type t, string name = null)
         {
@@ -41,8 +52,8 @@
 
         public ActorRef ActorFor(string name)
         {
-            if (name.StartsWith("/"))
-                name = name.Substring(1);
+            if (name.StartsWith(this.prefix))
+                name = name.Substring(this.prefix.Length);
 
             if (this.actors.ContainsKey(name))
                 return this.actors[name];

@@ -11,6 +11,7 @@
         private int nworkers;
 
         public ActorSystem(int nworkers = 10)
+            : base("/")
         {
             this.nworkers = nworkers;
 
@@ -39,7 +40,7 @@
 
         internal override ActorRef CreateActorRef(Actor actor, string name)
         {
-            return new ActorRef(actor, new Mailbox(this), "/" + name);
+            return new ActorRef(actor, new Mailbox(this), this.Prefix + name);
         }
 
         internal override ActorContext CreateActorContext(string path)

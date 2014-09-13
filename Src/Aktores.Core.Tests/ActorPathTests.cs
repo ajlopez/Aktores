@@ -22,7 +22,7 @@
             Assert.IsFalse(ActorPath.IsName("/foo"));
             Assert.IsFalse(ActorPath.IsName("//sys/foo"));
             Assert.IsFalse(ActorPath.IsName("aktores://sys/foo"));
-            Assert.IsFalse(ActorPath.IsName("actores.tcp://sys@localhost:3000/foo"));
+            Assert.IsFalse(ActorPath.IsName("aktores.tcp://sys@localhost:3000/foo"));
         }
 
         [TestMethod]
@@ -38,7 +38,7 @@
             Assert.IsFalse(ActorPath.IsRelative("/foo"));
             Assert.IsFalse(ActorPath.IsRelative("//sys/foo"));
             Assert.IsFalse(ActorPath.IsRelative("aktores://sys/foo"));
-            Assert.IsFalse(ActorPath.IsRelative("actores.tcp://sys@localhost:3000/foo"));
+            Assert.IsFalse(ActorPath.IsRelative("aktores.tcp://sys@localhost:3000/foo"));
         }
     }
 }
