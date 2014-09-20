@@ -8,20 +8,13 @@
     public class ActorContext : ActorRefFactory
     {
         private ActorSystem system;
-        private ActorRefFactory parent;
+        private ActorRef self;
 
-        internal ActorContext(ActorSystem system, string path)
-            : base(path)
+        internal ActorContext(ActorSystem system, ActorRef self)
+            : base()
         {
             this.system = system;
-            this.parent = system;
-        }
-
-        internal ActorContext(ActorContext parent, string path)
-            : base(path)
-        {
-            this.system = parent.system;
-            this.parent = parent;
+            this.self = self;
         }
 
         public override void Stop(ActorRef actorref)
@@ -31,14 +24,14 @@
 
         internal override ActorRef CreateActorRef(Actor actor, string name)
         {
-            string newpath = this.Prefix + name;
+            ActorPath path = new ActorPath(this.self.Path, name);
 
-            return new ActorRef(actor, new Mailbox(this.system), newpath);
+            return new ActorRef(actor, new Mailbox(this.system), path);
         }
 
-        internal override ActorContext CreateActorContext(string path)
+        internal override ActorContext CreateActorContext(ActorRef self)
         {
-            return new ActorContext(this, path);
+            return new ActorContext(this.system, self);
         }
     }
 }

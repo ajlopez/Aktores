@@ -7,20 +7,9 @@
 
     public abstract class ActorRefFactory
     {
-        private string prefix;
         private IDictionary<string, ActorRef> actors = new Dictionary<string, ActorRef>();
 
         internal IEnumerable<ActorRef> ActorRefs { get { return this.actors.Values; } }
-
-        public ActorRefFactory(string prefix)
-        {
-            if (!prefix.EndsWith("/"))
-                prefix += "/";
-
-            this.prefix = prefix;
-        }
-
-        public string Prefix { get { return this.prefix; } }
 
         public ActorRef ActorOf(Type t, string name = null)
         {
@@ -38,7 +27,7 @@
             this.Register(actorref, name);
 
             actor.Self = actorref;
-            actor.Context = this.CreateActorContext(actorref.Path);
+            actor.Context = this.CreateActorContext(actorref);
 
             actor.Initialize();
 
@@ -50,11 +39,8 @@
 
         public abstract void Stop(ActorRef actorref);
 
-        public ActorRef ActorFor(string name)
+        public virtual ActorRef ActorFor(string name)
         {
-            if (name.StartsWith(this.prefix))
-                name = name.Substring(this.prefix.Length);
-
             if (this.actors.ContainsKey(name))
                 return this.actors[name];
 
@@ -68,6 +54,6 @@
 
         internal abstract ActorRef CreateActorRef(Actor actor, string name);
 
-        internal abstract ActorContext CreateActorContext(string path);
+        internal abstract ActorContext CreateActorContext(ActorRef self);
     }
 }

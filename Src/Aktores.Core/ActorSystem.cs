@@ -11,7 +11,6 @@
         private int nworkers;
 
         public ActorSystem(int nworkers = 10)
-            : base("/")
         {
             this.nworkers = nworkers;
 
@@ -33,6 +32,14 @@
                 this.Stop(actorref);
         }
 
+        public override ActorRef ActorFor(string name)
+        {
+            if (name.StartsWith("/"))
+                return base.ActorFor(name.Substring(1));
+
+            return base.ActorFor(name);
+        }
+
         internal void AddTask(ActorTask task)
         {
             this.queue.Add(task);
@@ -40,12 +47,12 @@
 
         internal override ActorRef CreateActorRef(Actor actor, string name)
         {
-            return new ActorRef(actor, new Mailbox(this), this.Prefix + name);
+            return new ActorRef(actor, new Mailbox(this), new ActorPath(name));
         }
 
-        internal override ActorContext CreateActorContext(string path)
+        internal override ActorContext CreateActorContext(ActorRef self)
         {
-            return new ActorContext(this, path);
+            return new ActorContext(this, self);
         }
     }
 }

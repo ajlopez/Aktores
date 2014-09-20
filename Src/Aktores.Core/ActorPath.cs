@@ -23,7 +23,10 @@
 
         public string Name { get { return this.name; } }
 
-        public string Path { get { return (this.parent == null ? string.Empty : this.parent.Path) + "/" + name; } }
+        public override string ToString()
+        {
+            return (this.parent == null ? string.Empty : this.parent.ToString()) + "/" + name;
+        }
 
         public static bool IsName(string path)
         {

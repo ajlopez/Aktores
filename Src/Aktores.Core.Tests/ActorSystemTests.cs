@@ -18,14 +18,6 @@
         }
 
         [TestMethod]
-        public void GetPrefix()
-        {
-            ActorSystem system = new ActorSystem();
-
-            Assert.AreEqual("/", system.Prefix);
-        }
-
-        [TestMethod]
         public void GetNullActorRefForUnknownPath()
         {
             ActorSystem system = new ActorSystem();
@@ -74,8 +66,8 @@
 
             Assert.IsNotNull(actorref);
             Assert.IsNotNull(childactorref);
-            Assert.AreEqual("/myactor", actorref.Path);
-            Assert.AreEqual("/myactor/mychildactor", childactorref.Path);
+            Assert.AreEqual("/myactor", actorref.Path.ToString());
+            Assert.AreEqual("/myactor/mychildactor", childactorref.Path.ToString());
         }
 
         [TestMethod]

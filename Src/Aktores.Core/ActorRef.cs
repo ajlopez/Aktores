@@ -9,9 +9,9 @@
     {
         private Actor actor;
         private Mailbox mailbox;
-        private string path;
+        private ActorPath path;
 
-        internal ActorRef(Actor actor, Mailbox mailbox, string path)
+        internal ActorRef(Actor actor, Mailbox mailbox, ActorPath path)
         {
             this.actor = actor;
             this.mailbox = mailbox;
@@ -20,7 +20,7 @@
 
         public ActorState State { get { return this.actor.State; } }
 
-        public string Path { get { return this.path; } }
+        public ActorPath Path { get { return this.path; } }
 
         internal Actor Actor { get { return this.actor; } }
 

@@ -42,7 +42,7 @@
         {
             var path = new ActorPath("foo");
 
-            Assert.AreEqual("/foo", path.Path);
+            Assert.AreEqual("/foo", path.ToString());
             Assert.AreEqual("foo", path.Name);
         }
 
@@ -51,7 +51,7 @@
         {
             var parent = new ActorPath("foo");
             var path = new ActorPath(parent, "bar");
-            Assert.AreEqual("/foo/bar", path.Path);
+            Assert.AreEqual("/foo/bar", path.ToString());
             Assert.AreEqual("bar", path.Name);
         }
     }
