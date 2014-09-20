@@ -20,9 +20,7 @@
 
             Assert.IsFalse(ActorPath.IsName("./foo"));
             Assert.IsFalse(ActorPath.IsName("/foo"));
-            Assert.IsFalse(ActorPath.IsName("//sys/foo"));
-            Assert.IsFalse(ActorPath.IsName("aktores://sys/foo"));
-            Assert.IsFalse(ActorPath.IsName("aktores.tcp://sys@localhost:3000/foo"));
+            Assert.IsFalse(ActorPath.IsName("/foo/bar"));
         }
 
         [TestMethod]
@@ -36,45 +34,25 @@
 
             Assert.IsTrue(ActorPath.IsRelative("./foo"));
             Assert.IsFalse(ActorPath.IsRelative("/foo"));
-            Assert.IsFalse(ActorPath.IsRelative("//sys/foo"));
-            Assert.IsFalse(ActorPath.IsRelative("aktores://sys/foo"));
-            Assert.IsFalse(ActorPath.IsRelative("aktores.tcp://sys@localhost:3000/foo"));
+            Assert.IsFalse(ActorPath.IsRelative("/foo/bar"));
         }
 
         [TestMethod]
-        public void SplitInFullPathInParts()
+        public void ActorPathForName()
         {
-            var path = new ActorPath("aktores.tcp://sys@localhost:3000/foo/actor");
+            var path = new ActorPath("foo");
 
-            Assert.AreEqual("aktores.tcp", path.Protocol);
-            Assert.AreEqual("sys", path.SystemName);
-            Assert.AreEqual("localhost", path.HostName);
-            Assert.AreEqual(3000, path.Port);
-            Assert.AreEqual("/foo/actor", path.ActorAddress);
+            Assert.AreEqual("/foo", path.Path);
+            Assert.AreEqual("foo", path.Name);
         }
 
         [TestMethod]
-        public void SplitLocalPathInParts()
+        public void ActorPathForChild()
         {
-            var path = new ActorPath("/foo/actor");
-
-            Assert.AreEqual("aktores", path.Protocol);
-            Assert.AreEqual("sys", path.SystemName);
-            Assert.IsNull(path.HostName);
-            Assert.AreEqual(0, path.Port);
-            Assert.AreEqual("/foo/actor", path.ActorAddress);
-        }
-
-        [TestMethod]
-        public void SplitPartialPathInParts()
-        {
-            var path = new ActorPath("//sys2/foo/actor");
-
-            Assert.AreEqual("aktores", path.Protocol);
-            Assert.AreEqual("sys2", path.SystemName);
-            Assert.IsNull(path.HostName);
-            Assert.AreEqual(0, path.Port);
-            Assert.AreEqual("/foo/actor", path.ActorAddress);
+            var parent = new ActorPath("foo");
+            var path = new ActorPath(parent, "bar");
+            Assert.AreEqual("/foo/bar", path.Path);
+            Assert.AreEqual("bar", path.Name);
         }
     }
 }
