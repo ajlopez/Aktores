@@ -17,6 +17,14 @@
             this.self = self;
         }
 
+        public override ActorRef ActorFor(string name)
+        {
+            if (name.StartsWith("/"))
+                return this.system.ActorFor(name);
+
+            return base.ActorFor(name);
+        }
+
         public override void Stop(ActorRef actorref)
         {
             this.system.Stop(actorref);
