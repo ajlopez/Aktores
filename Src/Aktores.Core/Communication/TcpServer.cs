@@ -40,15 +40,8 @@
                             this.ProcessClient(client);
                         })).Start();
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        try
-                        {
-                            Console.Error.WriteLine(ex.StackTrace);
-                        }
-                        catch
-                        {
-                        }
                     }
                 }
             })).Start();
@@ -60,7 +53,7 @@
             this.listener.Stop();
         }
 
-        private void ProcessClient(TcpClient client)
+        private void ProcessClient(System.Net.Sockets.TcpClient client)
         {
             try
             {
@@ -84,3 +77,4 @@
         }
     }
 }
+ 

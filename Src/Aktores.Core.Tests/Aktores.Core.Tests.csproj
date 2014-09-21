@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="ActorPathTests.cs" />
     <Compile Include="ActorSystemTests.cs" />
+    <Compile Include="Communication\TcpClientTests.cs" />
     <Compile Include="Communication\TcpServerTests.cs" />
     <Compile Include="Communication\InProcessClientTests.cs" />
     <Compile Include="Communication\InputChannelTests.cs" />

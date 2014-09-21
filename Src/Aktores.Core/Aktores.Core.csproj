@@ -49,6 +49,7 @@
     <Compile Include="ActorPath.cs" />
     <Compile Include="ActorTask.cs" />
     <Compile Include="Address.cs" />
+    <Compile Include="Communication\TcpClient.cs" />
     <Compile Include="Communication\InProcessClient.cs" />
     <Compile Include="Communication\InputChannel.cs" />
     <Compile Include="Communication\OutputChannel.cs" />
