@@ -1,4 +1,4 @@
-﻿namespace Aktores.Communication
+﻿namespace Aktores.Core.Communication
 {
     using System;
     using System.Collections.Generic;

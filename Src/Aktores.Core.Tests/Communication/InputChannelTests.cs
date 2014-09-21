@@ -5,7 +5,7 @@
     using System.IO;
     using System.Linq;
     using System.Text;
-    using Aktores.Communication;
+    using Aktores.Core.Communication;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]

@@ -52,6 +52,7 @@
     <Compile Include="Communication\InProcessClient.cs" />
     <Compile Include="Communication\InputChannel.cs" />
     <Compile Include="Communication\OutputChannel.cs" />
+    <Compile Include="Communication\TcpServer.cs" />
     <Compile Include="Communication\Types.cs" />
     <Compile Include="Mailbox.cs" />
     <Compile Include="ActorRef.cs" />
