@@ -136,7 +136,6 @@
             // TODO better time management
             Thread.Sleep(1000);
 
-            Assert.AreEqual(ActorState.Stopped, result.State);
             Assert.AreEqual(ActorState.Stopped, actor.State);
         }
 
@@ -167,7 +166,6 @@
             // TODO better time management
             Thread.Sleep(1000);
 
-            Assert.AreEqual(ActorState.Stopped, result.State);
             Assert.AreEqual(ActorState.Stopped, actor.State);
         }
 
@@ -204,8 +202,6 @@
             var ref1 = system.ActorOf(actor1);
             var ref2 = system.ActorOf(actor2);
 
-            Assert.AreEqual(ActorState.Running, ref1.State);
-            Assert.AreEqual(ActorState.Running, ref2.State);
             Assert.AreEqual(ActorState.Running, actor1.State);
             Assert.AreEqual(ActorState.Running, actor2.State);
 
@@ -214,8 +210,6 @@
             // TODO better time management
             Thread.Sleep(1000);
 
-            Assert.AreEqual(ActorState.Stopped, ref1.State);
-            Assert.AreEqual(ActorState.Stopped, ref2.State);
             Assert.AreEqual(ActorState.Stopped, actor1.State);
             Assert.AreEqual(ActorState.Stopped, actor2.State);
         }

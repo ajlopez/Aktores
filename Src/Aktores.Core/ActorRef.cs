@@ -18,8 +18,6 @@
             this.path = path;
         }
 
-        public ActorState State { get { return this.actor.State; } }
-
         public ActorPath Path { get { return this.path; } }
 
         internal Actor Actor { get { return this.actor; } }
