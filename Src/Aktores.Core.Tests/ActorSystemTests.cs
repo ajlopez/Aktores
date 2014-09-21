@@ -90,6 +90,28 @@
         }
 
         [TestMethod]
+        public void ActorForFromChildToChild()
+        {
+            Actor actor = new MyActor();
+            Actor child = new MyActor();
+            Actor child2 = new MyActor();
+            ActorSystem system = new ActorSystem();
+
+            var actorref = system.ActorOf(actor, "myactor");
+            var childactorref = actor.Context.ActorOf(child, "mychildactor");
+            var childactor2ref = actor.Context.ActorOf(child, "mychildactor2");
+
+            Assert.IsNotNull(actorref);
+            Assert.IsNotNull(childactorref);
+            Assert.IsNotNull(childactor2ref);
+
+            var result = child.Context.ActorFor("/myactor/mychildactor2");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("/myactor/mychildactor2", result.Path.ToString());
+        }
+
+        [TestMethod]
         public void CreateActorRefUsingActorAndSendMessage()
         {
             int total = 0;

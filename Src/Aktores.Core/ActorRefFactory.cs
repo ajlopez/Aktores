@@ -7,9 +7,10 @@
 
     public abstract class ActorRefFactory
     {
-        private IDictionary<string, ActorRef> actors = new Dictionary<string, ActorRef>();
+        private IDictionary<string, ActorRef> actorrefs = new Dictionary<string, ActorRef>();
+        private IDictionary<string, ActorContext> contexts = new Dictionary<string, ActorContext>();
 
-        internal IEnumerable<ActorRef> ActorRefs { get { return this.actors.Values; } }
+        internal IEnumerable<ActorRef> ActorRefs { get { return this.actorrefs.Values; } }
 
         public ActorRef ActorOf(Type t, string name = null)
         {
@@ -23,11 +24,12 @@
                 name = Guid.NewGuid().ToString();
 
             var actorref = this.CreateActorRef(actor, name);
+            var actorctx = this.CreateActorContext(actorref);
 
-            this.Register(actorref, name);
+            this.Register(actorref, actorctx, name);
 
             actor.Self = actorref;
-            actor.Context = this.CreateActorContext(actorref);
+            actor.Context = actorctx;
 
             actor.Initialize();
 
@@ -41,15 +43,29 @@
 
         public virtual ActorRef ActorFor(string name)
         {
-            if (this.actors.ContainsKey(name))
-                return this.actors[name];
+            int p = name.IndexOf('/');
+
+            if (p > 0)
+            {
+                string topname = name.Substring(0, p);
+                name = name.Substring(p + 1);
+
+                if (this.contexts.ContainsKey(topname))
+                    return this.contexts[topname].ActorFor(name);
+
+                return null;
+            }
+
+            if (this.actorrefs.ContainsKey(name))
+                return this.actorrefs[name];
 
             return null;
         }
 
-        internal void Register(ActorRef actor, string name)
+        internal void Register(ActorRef actorref, ActorContext context, string name)
         {
-            this.actors[name] = actor;
+            this.actorrefs[name] = actorref;
+            this.contexts[name] = context;
         }
 
         internal abstract ActorRef CreateActorRef(Actor actor, string name);
