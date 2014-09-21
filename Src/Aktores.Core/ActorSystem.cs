@@ -18,7 +18,7 @@
                 (new Worker(this.queue)).Start();
         }
 
-        public override void Stop(ActorRef actorref)
+        public void Stop(ActorRef actorref)
         {
             actorref.Actor.Stop();
         }

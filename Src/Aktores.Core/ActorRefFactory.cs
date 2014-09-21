@@ -41,8 +41,6 @@
             return actorref;
         }
 
-        public abstract void Stop(ActorRef actorref);
-
         public virtual ActorRef ActorFor(string name)
         {
             int p = name.IndexOf('/');
