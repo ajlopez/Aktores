@@ -28,8 +28,8 @@
             for (int k = 0; k < this.nworkers; k++)
                 this.queue.Add(null);
 
-            foreach (var actorref in this.ActorRefs)
-                this.Stop(actorref);
+            foreach (var childctx in this.ActorContexts)
+                childctx.Shutdown();
         }
 
         public override ActorRef ActorFor(string name)

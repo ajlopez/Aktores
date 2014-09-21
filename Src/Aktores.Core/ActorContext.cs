@@ -25,6 +25,14 @@
             return base.ActorFor(name);
         }
 
+        public void Shutdown()
+        {
+            foreach (var childctx in this.ActorContexts)
+                childctx.Shutdown();
+
+            this.self.Actor.Stop();
+        }
+
         public override void Stop(ActorRef actorref)
         {
             this.system.Stop(actorref);

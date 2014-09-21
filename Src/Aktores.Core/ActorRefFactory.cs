@@ -12,6 +12,8 @@
 
         internal IEnumerable<ActorRef> ActorRefs { get { return this.actorrefs.Values; } }
 
+        internal IEnumerable<ActorContext> ActorContexts { get { return this.contexts.Values; } }
+
         public ActorRef ActorOf(Type t, string name = null)
         {
             var actor = (Actor)Activator.CreateInstance(t);
