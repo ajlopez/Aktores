@@ -222,21 +222,6 @@
             }
         }
 
-        private class LambdaActor : Actor
-        {
-            private Action<object> fn;
-
-            public LambdaActor(Action<object> fn)
-            {
-                this.fn = fn;
-            }
-
-            public override void Receive(object message)
-            {
-                this.fn(message);
-            }
-        }
-
         private class ForwardActor : Actor
         {
             private ActorRef actorref;
