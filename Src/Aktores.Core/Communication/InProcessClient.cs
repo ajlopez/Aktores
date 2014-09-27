@@ -16,7 +16,7 @@
 
         public void Tell(string path, object message, ActorRef sender = null)
         {
-            var actorref = this.system.ActorFor(path);
+            var actorref = this.system.ActorSelect(path);
             actorref.Tell(message, sender);
         }
     }

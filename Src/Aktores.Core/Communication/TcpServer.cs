@@ -72,7 +72,7 @@
         {
             var path = (string)channel.Read();
             var message = channel.Read();
-            var actorref = this.system.ActorFor(path);
+            var actorref = this.system.ActorSelect(path);
             actorref.Tell(message);
         }
     }

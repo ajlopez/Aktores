@@ -32,12 +32,17 @@
                 childctx.Shutdown();
         }
 
-        public override ActorRef ActorFor(string name)
+        internal override ActorRef ActorSelectRemote(Address address, ActorPath path)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal override ActorRef ActorSelectLocal(string name)
         {
             if (name.StartsWith("/"))
-                return base.ActorFor(name.Substring(1));
+                return base.ActorSelectLocal(name.Substring(1));
 
-            return base.ActorFor(name);
+            return base.ActorSelectLocal(name);
         }
 
         internal void AddTask(ActorTask task)

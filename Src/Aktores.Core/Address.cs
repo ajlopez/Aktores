@@ -59,5 +59,15 @@
         public string HostName { get { return this.hostname; } }
 
         public int Port { get { return this.port; } }
+
+        public static Address GetAddress(string path)
+        {
+            return null;
+        }
+
+        public static ActorPath GetActorPath(string path)
+        {
+            return null;
+        }
     }
 }

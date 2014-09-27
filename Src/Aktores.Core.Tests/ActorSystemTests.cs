@@ -22,7 +22,7 @@
         {
             ActorSystem system = new ActorSystem();
 
-            Assert.IsNull(system.ActorFor("unknown"));
+            Assert.IsNull(system.ActorSelect("unknown"));
         }
 
         [TestMethod]
@@ -34,14 +34,14 @@
 
             Assert.IsNotNull(result);
 
-            var result2 = system.ActorFor("myactor");
+            var result2 = system.ActorSelect("myactor");
 
             Assert.IsNotNull(result2);
             Assert.AreSame(result, result2);
         }
 
         [TestMethod]
-        public void ActorForUsingSlash()
+        public void ActorSelectUsingSlash()
         {
             ActorSystem system = new ActorSystem();
 
@@ -49,7 +49,7 @@
 
             Assert.IsNotNull(result);
 
-            var result2 = system.ActorFor("/myactor");
+            var result2 = system.ActorSelect("/myactor");
 
             Assert.IsNotNull(result2);
             Assert.AreSame(result, result2);
@@ -71,7 +71,7 @@
         }
 
         [TestMethod]
-        public void ActorForFromChild()
+        public void ActorSelectFromChild()
         {
             Actor actor = new MyActor();
             Actor child = new MyActor();
@@ -83,14 +83,14 @@
             Assert.IsNotNull(actorref);
             Assert.IsNotNull(childactorref);
 
-            var result = child.Context.ActorFor("/myactor");
+            var result = child.Context.ActorSelect("/myactor");
 
             Assert.IsNotNull(result);
             Assert.AreEqual("/myactor", result.Path.ToString());
         }
 
         [TestMethod]
-        public void ActorForFromChildToChild()
+        public void ActorSelectFromChildToChild()
         {
             Actor actor = new MyActor();
             Actor child = new MyActor();
@@ -105,7 +105,7 @@
             Assert.IsNotNull(childactorref);
             Assert.IsNotNull(childactor2ref);
 
-            var result = child.Context.ActorFor("/myactor/mychildactor2");
+            var result = child.Context.ActorSelect("/myactor/mychildactor2");
 
             Assert.IsNotNull(result);
             Assert.AreEqual("/myactor/mychildactor2", result.Path.ToString());

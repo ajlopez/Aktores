@@ -41,7 +41,19 @@
             return actorref;
         }
 
-        public virtual ActorRef ActorFor(string name)
+        public ActorRef ActorSelect(string name)
+        {
+            Address address = Address.GetAddress(name);
+
+            if (address == null)
+                return this.ActorSelectLocal(name);
+            else
+                return this.ActorSelectRemote(address, Address.GetActorPath(name));
+        }
+
+        internal abstract ActorRef ActorSelectRemote(Address address, ActorPath path);
+
+        internal virtual ActorRef ActorSelectLocal(string name)
         {
             int p = name.IndexOf('/');
 
@@ -51,7 +63,7 @@
                 name = name.Substring(p + 1);
 
                 if (this.contexts.ContainsKey(topname))
-                    return this.contexts[topname].ActorFor(name);
+                    return this.contexts[topname].ActorSelect(name);
 
                 return null;
             }

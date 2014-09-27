@@ -17,12 +17,12 @@
             this.self = self;
         }
 
-        public override ActorRef ActorFor(string name)
+        internal override ActorRef ActorSelectLocal(string name)
         {
             if (name.StartsWith("/"))
-                return this.system.ActorFor(name);
+                return this.system.ActorSelectLocal(name);
 
-            return base.ActorFor(name);
+            return base.ActorSelectLocal(name);
         }
 
         internal void Shutdown()
@@ -31,6 +31,11 @@
                 childctx.Shutdown();
 
             this.self.Actor.Stop();
+        }
+
+        internal override ActorRef ActorSelectRemote(Address address, ActorPath path)
+        {
+            throw new NotImplementedException();
         }
 
         internal override ActorRef CreateActorRef(Actor actor, string name)
