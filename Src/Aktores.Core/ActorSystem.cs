@@ -4,11 +4,13 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+using Aktores.Core.Communication;
 
     public class ActorSystem : ActorRefFactory
     {
         private TaskQueue queue = new TaskQueue();
         private int nworkers;
+        private IDictionary<string, TcpClient> remotes = new Dictionary<string, TcpClient>();
 
         public ActorSystem(int nworkers = 10)
         {
@@ -30,11 +32,23 @@
 
             foreach (var childctx in this.ActorContexts)
                 childctx.Shutdown();
+
+            foreach (var remote in this.remotes.Values)
+                remote.Stop();
         }
 
         internal override ActorRef ActorSelectRemote(Address address, ActorPath path)
         {
-            throw new NotImplementedException();
+            var key = address.ToString();
+
+            if (!this.remotes.ContainsKey(key))
+            {
+                var client = new TcpClient(address.HostName, address.Port);
+                client.Start();
+                this.remotes[key] = client;
+            }
+
+            return new ActorRemoteRef(this.remotes[key], path);
         }
 
         internal override ActorRef ActorSelectLocal(string name)

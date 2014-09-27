@@ -56,6 +56,7 @@
     <Compile Include="Communication\TcpServer.cs" />
     <Compile Include="Communication\Types.cs" />
     <Compile Include="ActorLocalRef.cs" />
+    <Compile Include="ActorRemoteRef.cs" />
     <Compile Include="Mailbox.cs" />
     <Compile Include="ActorRef.cs" />
     <Compile Include="ActorRefFactory.cs" />

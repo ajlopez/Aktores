@@ -35,7 +35,7 @@
 
         internal override ActorRef ActorSelectRemote(Address address, ActorPath path)
         {
-            throw new NotImplementedException();
+            return this.system.ActorSelectRemote(address, path);
         }
 
         internal override ActorLocalRef CreateActorRef(Actor actor, string name)
