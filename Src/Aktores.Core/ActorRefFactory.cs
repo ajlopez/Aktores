@@ -80,8 +80,8 @@
             this.contexts[name] = context;
         }
 
-        internal abstract ActorRef CreateActorRef(Actor actor, string name);
+        internal abstract ActorLocalRef CreateActorRef(Actor actor, string name);
 
-        internal abstract ActorContext CreateActorContext(ActorRef self);
+        internal abstract ActorContext CreateActorContext(ActorLocalRef self);
     }
 }

@@ -20,7 +20,7 @@
 
         public void Stop(ActorRef actorref)
         {
-            actorref.Actor.Stop();
+            ((ActorLocalRef)actorref).Actor.Stop();
         }
 
         public void Shutdown()
@@ -50,12 +50,12 @@
             this.queue.Add(task);
         }
 
-        internal override ActorRef CreateActorRef(Actor actor, string name)
+        internal override ActorLocalRef CreateActorRef(Actor actor, string name)
         {
-            return new ActorRef(actor, new Mailbox(this), new ActorPath(name));
+            return new ActorLocalRef(actor, new Mailbox(this), new ActorPath(name));
         }
 
-        internal override ActorContext CreateActorContext(ActorRef self)
+        internal override ActorContext CreateActorContext(ActorLocalRef self)
         {
             return new ActorContext(this, self);
         }

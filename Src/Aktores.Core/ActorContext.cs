@@ -8,9 +8,9 @@
     public class ActorContext : ActorRefFactory
     {
         private ActorSystem system;
-        private ActorRef self;
+        private ActorLocalRef self;
 
-        internal ActorContext(ActorSystem system, ActorRef self)
+        internal ActorContext(ActorSystem system, ActorLocalRef self)
             : base()
         {
             this.system = system;
@@ -38,14 +38,14 @@
             throw new NotImplementedException();
         }
 
-        internal override ActorRef CreateActorRef(Actor actor, string name)
+        internal override ActorLocalRef CreateActorRef(Actor actor, string name)
         {
             ActorPath path = new ActorPath(this.self.Path, name);
 
-            return new ActorRef(actor, new Mailbox(this.system), path);
+            return new ActorLocalRef(actor, new Mailbox(this.system), path);
         }
 
-        internal override ActorContext CreateActorContext(ActorRef self)
+        internal override ActorContext CreateActorContext(ActorLocalRef self)
         {
             return new ActorContext(this.system, self);
         }
