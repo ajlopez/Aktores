@@ -44,6 +44,29 @@
 
             Assert.AreEqual("/foo", path.ToString());
             Assert.AreEqual("foo", path.Name);
+            Assert.IsNull(path.Parent);
+        }
+
+        [TestMethod]
+        public void ActorPathForRootName()
+        {
+            var path = new ActorPath("/foo");
+
+            Assert.AreEqual("/foo", path.ToString());
+            Assert.AreEqual("foo", path.Name);
+            Assert.IsNull(path.Parent);
+        }
+
+        [TestMethod]
+        public void ActorPathForCompositeName()
+        {
+            var path = new ActorPath("foo/bar");
+
+            Assert.IsNotNull(path.Parent);
+            Assert.AreEqual("/foo/bar", path.ToString());
+            Assert.AreEqual("bar", path.Name);
+            Assert.AreEqual("/foo", path.Parent.ToString());
+            Assert.AreEqual("foo", path.Parent.Name);
         }
 
         [TestMethod]
@@ -53,6 +76,7 @@
             var path = new ActorPath(parent, "bar");
             Assert.AreEqual("/foo/bar", path.ToString());
             Assert.AreEqual("bar", path.Name);
+            Assert.AreSame(parent, path.Parent);
         }
     }
 }

@@ -62,12 +62,32 @@
 
         public static Address GetAddress(string path)
         {
-            return null;
+            int p = path.IndexOf("//");
+
+            if (p < 0)
+                return null;
+
+            var pa = path.IndexOf("/", p + 2);
+
+            if (pa < 0)
+                return new Address(path);
+
+            return new Address(path.Substring(0, pa));
         }
 
         public static ActorPath GetActorPath(string path)
         {
-            return null;
+            int p = path.IndexOf("//");
+
+            if (p < 0)
+                return new ActorPath(path);
+
+            var pa = path.IndexOf("/", p + 2);
+
+            if (pa < 0)
+                return null;
+
+            return new ActorPath(path.Substring(pa + 1));
         }
     }
 }

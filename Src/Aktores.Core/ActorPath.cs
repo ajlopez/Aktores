@@ -11,8 +11,31 @@
         private string name;
 
         public ActorPath(string name)
-            : this(null, name)
         {
+            int p = name.LastIndexOf('/');
+
+            if (p < 0)
+            {
+                this.parent = null;
+                this.name = name;
+            }
+            else if (p == 0)
+            {
+                this.parent = null;
+                this.name = name.Substring(1);
+            }
+            else
+            {
+                string parentname = name.Substring(0, p);
+                name = name.Substring(p + 1);
+
+                if (!string.IsNullOrWhiteSpace(parentname))
+                    this.parent = new ActorPath(parentname);
+                else
+                    this.parent = null;
+
+                this.name = name;
+            }
         }
 
         public ActorPath(ActorPath parent, string name)
@@ -22,6 +45,8 @@
         }
 
         public string Name { get { return this.name; } }
+
+        public ActorPath Parent { get { return this.parent; } }
 
         public override string ToString()
         {
