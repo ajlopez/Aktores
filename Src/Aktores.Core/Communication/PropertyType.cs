@@ -5,13 +5,12 @@
     using System.Linq;
     using System.Text;
 
-    public enum Types
+    public class PropertyType
     {
-        Null = 0,
-        Integer = 1,
-        Double = 2,
-        String = 3,
-        Object = 4,
-        Type = 5
+        public string Name { get; set; }
+
+        public Types Type { get; set; }
+
+        public string TypeName { get; set; }
     }
 }
