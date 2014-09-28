@@ -69,6 +69,12 @@
             return new TypeSerializer(name, properties);
         }
 
+        public void SerializeObject(object obj, OutputChannel channel)
+        {
+            foreach (var prop in this.properties)
+                channel.Write(this.type.GetProperty(prop.Name).GetValue(obj, null));
+        }
+
         public void SerializeType(OutputChannel channel)
         {
             channel.Write((byte)Types.Type);

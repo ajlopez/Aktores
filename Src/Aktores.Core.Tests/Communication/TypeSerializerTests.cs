@@ -74,6 +74,29 @@
         }
 
         [TestMethod]
+        public void SerializePersonObject()
+        {
+            var serializer = new TypeSerializer(typeof(Person));
+            var person = new Person()
+            {
+                Id = 1,
+                FirstName = "John",
+                LastName = "Smith"
+            };
+
+            MemoryStream stream = new MemoryStream();
+            OutputChannel output = new OutputChannel(new BinaryWriter(stream));
+            serializer.SerializeObject(person, output);
+            stream.Seek(0, SeekOrigin.Begin);
+
+            InputChannel channel = new InputChannel(new BinaryReader(stream));
+
+            Assert.AreEqual(1, channel.Read());
+            Assert.AreEqual("John", channel.Read());
+            Assert.AreEqual("Smith", channel.Read());
+        }
+
+        [TestMethod]
         public void CreateSerializerByFullNameAndProperties()
         {
             IList<PropertyType> properties = new List<PropertyType>();
