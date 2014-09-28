@@ -94,6 +94,27 @@
         }
 
         [TestMethod]
+        public void WriteDecimal()
+        {
+            MemoryStream stream = new MemoryStream();
+            OutputChannel channel = new OutputChannel(new BinaryWriter(stream));
+
+            decimal dc = 12.34m;
+
+            channel.Write(dc);
+
+            stream.Seek(0, SeekOrigin.Begin);
+
+            BinaryReader reader = new BinaryReader(stream);
+
+            Assert.AreEqual((byte)Types.Decimal, reader.ReadByte());
+            Assert.AreEqual(dc, reader.ReadDecimal());
+            Assert.AreEqual(-1, reader.PeekChar());
+
+            reader.Close();
+        }
+
+        [TestMethod]
         public void WriteChar()
         {
             MemoryStream stream = new MemoryStream();
@@ -107,7 +128,7 @@
 
             BinaryReader reader = new BinaryReader(stream);
 
-            Assert.AreEqual((byte)Types.Char, reader.ReadByte());
+            Assert.AreEqual((byte)Types.Character, reader.ReadByte());
             Assert.AreEqual(ch, reader.ReadChar());
             Assert.AreEqual(-1, reader.PeekChar());
             
@@ -164,7 +185,7 @@
 
             BinaryReader reader = new BinaryReader(stream);
 
-            Assert.AreEqual((byte)Types.Float, reader.ReadByte());
+            Assert.AreEqual((byte)Types.Single, reader.ReadByte());
             Assert.AreEqual((float)123.45, reader.ReadSingle());
             Assert.AreEqual(-1, reader.PeekChar());
 

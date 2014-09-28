@@ -9,12 +9,13 @@
     {
         Null,
         Byte,
-        Char,
+        Character,
         Short,
         Integer,
         Long,
-        Float,
+        Single,
         Double,
+        Decimal,
         String,
         Object,
         Type

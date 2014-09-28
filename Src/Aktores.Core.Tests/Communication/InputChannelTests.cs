@@ -94,6 +94,20 @@
         }
 
         [TestMethod]
+        public void ReadDecimal()
+        {
+            MemoryStream stream = new MemoryStream();
+            OutputChannel output = new OutputChannel(new BinaryWriter(stream));
+            decimal dc = 12.34m;
+            output.Write(dc);
+            stream.Seek(0, SeekOrigin.Begin);
+
+            InputChannel channel = new InputChannel(new BinaryReader(stream));
+
+            Assert.AreEqual(dc, channel.Read());
+        }
+
+        [TestMethod]
         public void ReadDouble()
         {
             MemoryStream stream = new MemoryStream();

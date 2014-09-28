@@ -31,14 +31,16 @@
                     return this.reader.ReadString();
                 case (byte)Types.Byte:
                     return this.reader.ReadByte();
-                case (byte)Types.Char:
+                case (byte)Types.Character:
                     return this.reader.ReadChar();
-                case (byte)Types.Float:
+                case (byte)Types.Single:
                     return this.reader.ReadSingle();
                 case (byte)Types.Short:
                     return this.reader.ReadInt16();
                 case (byte)Types.Long:
                     return this.reader.ReadInt64();
+                case (byte)Types.Decimal:
+                    return this.reader.ReadDecimal();
             }
 
             throw new InvalidDataException();

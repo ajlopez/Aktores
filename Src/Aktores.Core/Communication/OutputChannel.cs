@@ -46,7 +46,7 @@
 
             if (obj is char)
             {
-                this.writer.Write((byte)Types.Char);
+                this.writer.Write((byte)Types.Character);
                 this.writer.Write((char)obj);
                 return;
             }
@@ -67,7 +67,7 @@
 
             if (obj is float)
             {
-                this.writer.Write((byte)Types.Float);
+                this.writer.Write((byte)Types.Single);
                 this.writer.Write((float)obj);
                 return;
             }
@@ -76,6 +76,13 @@
             {
                 this.writer.Write((byte)Types.String);
                 this.writer.Write((string)obj);
+                return;
+            }
+
+            if (obj is decimal)
+            {
+                this.writer.Write((byte)Types.Decimal);
+                this.writer.Write((decimal)obj);
                 return;
             }
         }
