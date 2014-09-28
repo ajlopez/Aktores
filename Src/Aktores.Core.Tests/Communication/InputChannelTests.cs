@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Text;
     using Aktores.Core.Communication;
+    using Aktores.Core.Tests;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
@@ -131,6 +132,40 @@
             InputChannel channel = new InputChannel(new BinaryReader(stream));
 
             Assert.AreEqual("foo", channel.Read());
+        }
+
+        [TestMethod]
+        public void WriteAndReadPersonObject()
+        {
+            var person = new Person()
+            {
+                Id = 1,
+                FirstName = "John",
+                LastName = "Smith"
+            };
+
+            MemoryStream stream = new MemoryStream();
+            OutputChannel output = new OutputChannel(new BinaryWriter(stream));
+            output.Write(person);
+            stream.Seek(0, SeekOrigin.Begin);
+
+            InputChannel channel = new InputChannel(new BinaryReader(stream));
+
+            var ts = channel.Read();
+
+            Assert.IsNotNull(ts);
+            Assert.IsInstanceOfType(ts, typeof(TypeSerializer));
+
+            var result = channel.Read();
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Person));
+
+            var newperson = (Person)result;
+
+            Assert.AreEqual(person.Id, newperson.Id);
+            Assert.AreEqual(person.FirstName, newperson.FirstName);
+            Assert.AreEqual(person.LastName, newperson.LastName);
         }
 
         [TestMethod]

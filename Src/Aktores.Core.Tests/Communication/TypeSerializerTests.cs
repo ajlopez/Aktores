@@ -48,13 +48,17 @@
 
             MemoryStream stream = new MemoryStream();
             OutputChannel output = new OutputChannel(new BinaryWriter(stream));
-            serializer.SerializeType(output);
+            output.Write(serializer);
             stream.Seek(0, SeekOrigin.Begin);
 
             InputChannel channel = new InputChannel(new BinaryReader(stream));
 
-            Assert.AreEqual((byte)Types.Type, channel.Read());
-            var newserializer = TypeSerializer.DeserializeType(channel);
+            var result = channel.Read();
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(TypeSerializer));
+
+            var newserializer = (TypeSerializer)result;
             var props = newserializer.Properties;
 
             Assert.IsNotNull(props);

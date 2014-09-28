@@ -9,6 +9,7 @@
     public class InputChannel
     {
         private BinaryReader reader;
+        private IList<TypeSerializer> serializers = new List<TypeSerializer>();
 
         public InputChannel(BinaryReader reader)
         {
@@ -41,6 +42,29 @@
                     return this.reader.ReadInt64();
                 case (byte)Types.Decimal:
                     return this.reader.ReadDecimal();
+                case (byte)Types.Type:
+                    var name = this.reader.ReadString();
+                    var nprops = this.reader.ReadInt16();
+                    IList<PropertyType> properties = new List<PropertyType>();
+
+                    for (short k = 0; k < nprops; k++)
+                    {
+                        PropertyType property = new PropertyType();
+                        property.Name = this.reader.ReadString();
+                        property.Type = (Types)this.reader.ReadByte();
+
+                        if (property.Type == Types.Object)
+                            property.TypeName = this.reader.ReadString();
+
+                        properties.Add(property);
+                    }
+
+                    var serializer = new TypeSerializer(name, properties);
+                    this.serializers.Add(serializer);
+                    return serializer;
+                case (byte)Types.Object:
+                    var nserializer = this.reader.ReadInt16();
+                    return this.serializers[nserializer].DeserializerObject(this);
             }
 
             throw new InvalidDataException();

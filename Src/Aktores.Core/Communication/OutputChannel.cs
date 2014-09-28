@@ -9,6 +9,8 @@
     public class OutputChannel
     {
         private BinaryWriter writer;
+        private IList<TypeSerializer> serializers = new List<TypeSerializer>();
+        private IDictionary<string, int> typepositions = new Dictionary<string, int>();
 
         public OutputChannel(BinaryWriter writer)
         {
@@ -85,6 +87,46 @@
                 this.writer.Write((decimal)obj);
                 return;
             }
+
+            if (obj is TypeSerializer)
+            {
+                var ts = (TypeSerializer)obj;
+                var props = ts.Properties;
+                this.writer.Write((byte)Types.Type);
+                this.writer.Write(ts.TypeName);
+                this.writer.Write((short)props.Count);
+
+                foreach (var prop in props)
+                {
+                    this.writer.Write(prop.Name);
+                    this.writer.Write((byte)prop.Type);
+
+                    if (prop.Type == Types.Object)
+                        this.writer.Write(prop.TypeName);
+                }
+
+                return;
+            }
+
+            var type = obj.GetType();
+            string typename = type.FullName;
+
+            TypeSerializer serializer;
+
+            if (!this.typepositions.ContainsKey(typename))
+            {
+                serializer = new TypeSerializer(type);
+                this.typepositions[typename] = this.serializers.Count;
+                this.serializers.Add(serializer);
+                this.Write(serializer);
+            }
+            else
+                serializer = this.serializers[this.typepositions[typename]];
+
+            this.writer.Write((byte)Types.Object);
+            this.writer.Write((short)this.typepositions[typename]);
+
+            serializer.SerializeObject(obj, this);
         }
     }
 }

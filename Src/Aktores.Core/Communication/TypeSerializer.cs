@@ -48,47 +48,20 @@
 
         public IList<PropertyType> Properties { get { return this.properties; } }
 
-        public static TypeSerializer DeserializeType(InputChannel channel) 
-        {
-            var name = (string)channel.Read();
-            var nprops = (short)channel.Read();
-            IList<PropertyType> properties = new List<PropertyType>();
-
-            for (short k = 0; k < nprops; k++)
-            {
-                PropertyType property = new PropertyType();
-                property.Name = (string)channel.Read();
-                property.Type = (Types)((byte)channel.Read());
-
-                if (property.Type == Types.Object)
-                    property.TypeName = (string)channel.Read();
-
-                properties.Add(property);
-            }
-
-            return new TypeSerializer(name, properties);
-        }
-
         public void SerializeObject(object obj, OutputChannel channel)
         {
             foreach (var prop in this.properties)
                 channel.Write(this.type.GetProperty(prop.Name).GetValue(obj, null));
         }
 
-        public void SerializeType(OutputChannel channel)
+        public object DeserializerObject(InputChannel channel)
         {
-            channel.Write((byte)Types.Type);
-            channel.Write(this.TypeName);
-            channel.Write((short)this.properties.Count);
+            var obj = Activator.CreateInstance(this.type);
 
             foreach (var prop in this.properties)
-            {
-                channel.Write(prop.Name);
-                channel.Write((byte)prop.Type);
+                this.type.GetProperty(prop.Name).SetValue(obj, channel.Read(), null);
 
-                if (prop.Type == Types.Object)
-                    channel.Write(prop.TypeName);
-            }
+            return obj;
         }
     }
 }
