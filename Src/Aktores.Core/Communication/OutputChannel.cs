@@ -30,6 +30,34 @@
                 return;
             }
 
+            if (obj is short)
+            {
+                this.writer.Write((byte)Types.Short);
+                this.writer.Write((short)obj);
+                return;
+            }
+
+            if (obj is long)
+            {
+                this.writer.Write((byte)Types.Long);
+                this.writer.Write((long)obj);
+                return;
+            }
+
+            if (obj is char)
+            {
+                this.writer.Write((byte)Types.Char);
+                this.writer.Write((char)obj);
+                return;
+            }
+
+            if (obj is byte)
+            {
+                this.writer.Write((byte)Types.Byte);
+                this.writer.Write((byte)obj);
+                return;
+            }
+
             if (obj is double)
             {
                 this.writer.Write((byte)Types.Double);

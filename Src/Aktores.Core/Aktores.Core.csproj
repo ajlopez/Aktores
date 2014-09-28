@@ -66,6 +66,7 @@
     <Compile Include="ActorSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaskQueue.cs" />
+    <Compile Include="Utilities\TypeUtilities.cs" />
     <Compile Include="Worker.cs" />
   </ItemGroup>
   <ItemGroup>

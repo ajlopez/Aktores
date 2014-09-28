@@ -4,15 +4,23 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Aktores.Core.Utilities;
 
     public class TypeSerializer
     {
         private Type type;
-        private IList<PropertyType> properties = new List<PropertyType>();
+        private IList<PropertyType> properties;
+
+        public TypeSerializer(string fullname, IEnumerable<PropertyType> properties)
+        {
+            this.type = TypeUtilities.GetType(fullname);
+            this.properties = new List<PropertyType>(properties);
+        }
 
         public TypeSerializer(Type type)
         {
             this.type = type;
+            this.properties = new List<PropertyType>();
 
             foreach (var pi in type.GetProperties())
             {
