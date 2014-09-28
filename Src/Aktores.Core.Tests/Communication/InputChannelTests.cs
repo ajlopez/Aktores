@@ -38,6 +38,62 @@
         }
 
         [TestMethod]
+        public void ReadShortInteger()
+        {
+            MemoryStream stream = new MemoryStream();
+            OutputChannel output = new OutputChannel(new BinaryWriter(stream));
+            short sh = short.MaxValue;
+            output.Write(sh);
+            stream.Seek(0, SeekOrigin.Begin);
+
+            InputChannel channel = new InputChannel(new BinaryReader(stream));
+
+            Assert.AreEqual(sh, channel.Read());
+        }
+
+        [TestMethod]
+        public void ReadLongInteger()
+        {
+            MemoryStream stream = new MemoryStream();
+            OutputChannel output = new OutputChannel(new BinaryWriter(stream));
+            long ln = long.MaxValue;
+            output.Write(ln);
+            stream.Seek(0, SeekOrigin.Begin);
+
+            InputChannel channel = new InputChannel(new BinaryReader(stream));
+
+            Assert.AreEqual(ln, channel.Read());
+        }
+
+        [TestMethod]
+        public void ReadCharacter()
+        {
+            MemoryStream stream = new MemoryStream();
+            OutputChannel output = new OutputChannel(new BinaryWriter(stream));
+            char ch = 'a';
+            output.Write(ch);
+            stream.Seek(0, SeekOrigin.Begin);
+
+            InputChannel channel = new InputChannel(new BinaryReader(stream));
+
+            Assert.AreEqual(ch, channel.Read());
+        }
+
+        [TestMethod]
+        public void ReadByte()
+        {
+            MemoryStream stream = new MemoryStream();
+            OutputChannel output = new OutputChannel(new BinaryWriter(stream));
+            byte bt = 64;
+            output.Write(bt);
+            stream.Seek(0, SeekOrigin.Begin);
+
+            InputChannel channel = new InputChannel(new BinaryReader(stream));
+
+            Assert.AreEqual(bt, channel.Read());
+        }
+
+        [TestMethod]
         public void ReadDouble()
         {
             MemoryStream stream = new MemoryStream();

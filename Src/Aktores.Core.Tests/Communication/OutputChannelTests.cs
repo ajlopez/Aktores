@@ -153,6 +153,25 @@
         }
 
         [TestMethod]
+        public void WriteFloat()
+        {
+            MemoryStream stream = new MemoryStream();
+            OutputChannel channel = new OutputChannel(new BinaryWriter(stream));
+
+            channel.Write((float)123.45);
+
+            stream.Seek(0, SeekOrigin.Begin);
+
+            BinaryReader reader = new BinaryReader(stream);
+
+            Assert.AreEqual((byte)Types.Float, reader.ReadByte());
+            Assert.AreEqual((float)123.45, reader.ReadSingle());
+            Assert.AreEqual(-1, reader.PeekChar());
+
+            reader.Close();
+        }
+
+        [TestMethod]
         public void WriteNull()
         {
             MemoryStream stream = new MemoryStream();

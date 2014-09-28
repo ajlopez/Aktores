@@ -65,6 +65,13 @@
                 return;
             }
 
+            if (obj is float)
+            {
+                this.writer.Write((byte)Types.Float);
+                this.writer.Write((float)obj);
+                return;
+            }
+
             if (obj is string)
             {
                 this.writer.Write((byte)Types.String);
