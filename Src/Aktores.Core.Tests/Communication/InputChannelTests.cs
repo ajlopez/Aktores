@@ -169,6 +169,60 @@
         }
 
         [TestMethod]
+        public void WriteAndReadTwoPersonObjects()
+        {
+            var person = new Person()
+            {
+                Id = 1,
+                FirstName = "John",
+                LastName = "Smith"
+            };
+
+            var person2 = new Person()
+            {
+                Id = 2,
+                FirstName = "Adam",
+                LastName = "Pearson"
+            };
+
+            MemoryStream stream = new MemoryStream();
+            OutputChannel output = new OutputChannel(new BinaryWriter(stream));
+            output.Write(person);
+            output.Write(person2);
+
+            stream.Seek(0, SeekOrigin.Begin);
+
+            InputChannel channel = new InputChannel(new BinaryReader(stream));
+
+            var ts = channel.Read();
+
+            Assert.IsNotNull(ts);
+            Assert.IsInstanceOfType(ts, typeof(TypeSerializer));
+
+            var result = channel.Read();
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Person));
+
+            var newperson = (Person)result;
+
+            Assert.AreEqual(person.Id, newperson.Id);
+            Assert.AreEqual(person.FirstName, newperson.FirstName);
+            Assert.AreEqual(person.LastName, newperson.LastName);
+
+            result = channel.Read();
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Person));
+
+            var newperson2 = (Person)result;
+
+            Assert.AreEqual(person2.Id, newperson2.Id);
+            Assert.AreEqual(person2.FirstName, newperson2.FirstName);
+            Assert.AreEqual(person2.LastName, newperson2.LastName);
+        }
+
+        [TestMethod]
         public void ReadInvalidData()
         {
             MemoryStream stream = new MemoryStream();
