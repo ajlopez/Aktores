@@ -58,8 +58,10 @@
     <Compile Include="Communication\OutputChannelTests.cs" />
     <Compile Include="AddressTests.cs" />
     <Compile Include="LambdaActor.cs" />
+    <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ActorTests.cs" />
+    <Compile Include="Communication\TypeSerializerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Aktores.Core\Aktores.Core.csproj">
