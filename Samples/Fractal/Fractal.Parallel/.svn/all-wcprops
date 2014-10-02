@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/49/trunk/FractalExample/Fractal.Parallel
+END
+SectorInfo.cs
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/49/trunk/FractalExample/Fractal.Parallel/SectorInfo.cs
+END
+Sector.cs
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/49/trunk/FractalExample/Fractal.Parallel/Sector.cs
+END
+Fractal.Parallel.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/49/trunk/FractalExample/Fractal.Parallel/Fractal.Parallel.csproj
+END
+SectorSerializer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/49/trunk/FractalExample/Fractal.Parallel/SectorSerializer.cs
+END
+Calculator.cs
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/49/trunk/FractalExample/Fractal.Parallel/Calculator.cs
+END

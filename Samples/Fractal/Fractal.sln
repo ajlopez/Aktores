@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fractal", "Fractal\Fractal.csproj", "{9770F99D-C569-49DA-BCE4-F9BDF6CE186F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fractal.GUI", "Fractal.GUI\Fractal.GUI.csproj", "{8F9696D8-87FD-43A4-A9F5-677018CCEE44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fractal.Console", "Fractal.Console\Fractal.Console.csproj", "{D909DBA7-F5D7-4613-A206-5815F7FC58B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fractal.GUIFiles", "Fractal.GUIFiles\Fractal.GUIFiles.csproj", "{E5B563E3-AD1C-4844-BD1A-4B4FA0DC4B8F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9770F99D-C569-49DA-BCE4-F9BDF6CE186F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9770F99D-C569-49DA-BCE4-F9BDF6CE186F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9770F99D-C569-49DA-BCE4-F9BDF6CE186F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9770F99D-C569-49DA-BCE4-F9BDF6CE186F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F9696D8-87FD-43A4-A9F5-677018CCEE44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F9696D8-87FD-43A4-A9F5-677018CCEE44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F9696D8-87FD-43A4-A9F5-677018CCEE44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F9696D8-87FD-43A4-A9F5-677018CCEE44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D909DBA7-F5D7-4613-A206-5815F7FC58B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D909DBA7-F5D7-4613-A206-5815F7FC58B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D909DBA7-F5D7-4613-A206-5815F7FC58B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D909DBA7-F5D7-4613-A206-5815F7FC58B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5B563E3-AD1C-4844-BD1A-4B4FA0DC4B8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5B563E3-AD1C-4844-BD1A-4B4FA0DC4B8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5B563E3-AD1C-4844-BD1A-4B4FA0DC4B8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5B563E3-AD1C-4844-BD1A-4B4FA0DC4B8F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/6/trunk/FractalExample/Fractal.GUI
+END
+FractalForm.resx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/6/trunk/FractalExample/Fractal.GUI/FractalForm.resx
+END
+FractalForm.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/6/trunk/FractalExample/Fractal.GUI/FractalForm.designer.cs
+END
+FractalForm.cs
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/6/trunk/FractalExample/Fractal.GUI/FractalForm.cs
+END
+Program.cs
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/6/trunk/FractalExample/Fractal.GUI/Program.cs
+END
+Fractal.GUI.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/6/trunk/FractalExample/Fractal.GUI/Fractal.GUI.csproj
+END
