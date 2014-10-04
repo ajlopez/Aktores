@@ -17,6 +17,13 @@
 
         public override void Receive(object message)
         {
+            if (message is RegisterActorMessage)
+            {
+                var rmsg = (RegisterActorMessage)message;
+                this.Register(this.Context.ActorSystem.ActorSelect(rmsg.ActorPath));
+                return;
+            }
+
             var n = this.random.Next(this.childrefs.Count);
             this.childrefs[n].Tell(message, this.Sender);
         }

@@ -17,6 +17,8 @@
             this.self = self;
         }
 
+        public ActorSystem ActorSystem { get { return this.system; } }
+
         internal override ActorRef ActorSelectLocal(string name)
         {
             if (name.StartsWith("/"))

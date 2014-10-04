@@ -58,5 +58,27 @@
 
             system.Shutdown();
         }
+
+        [TestMethod]
+        public void SendRegisterMessageToRouter()
+        {
+            ActorSystem system = new ActorSystem();
+
+            int total = 0;
+            EventWaitHandle wait = new AutoResetEvent(false);
+            Actor actor = new LambdaActor(c => { total += (int)c; wait.Set(); });
+            var actorref = system.ActorOf(actor, "myactor");
+
+            var router = new RouterActor();
+            var routerref = system.ActorOf(router, "myrouter");
+
+            routerref.Tell(new RegisterActorMessage() { ActorPath = actorref.Path.ToString() });
+            routerref.Tell(3);
+
+            Assert.IsTrue(wait.WaitOne(1000));
+            Assert.AreEqual(3, total);
+
+            system.Shutdown();
+        }
     }
 }
