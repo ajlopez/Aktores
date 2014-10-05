@@ -53,7 +53,7 @@
 
             InputChannel channel = new InputChannel(new BinaryReader(stream));
 
-            var result = channel.Read();
+            var result = channel.Read(true);
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(TypeSerializer));

@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D689C17C-9D0E-406B-A013-3D26D6CA95D3}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{FA39129E-7086-43E3-9804-6B2CD5462752}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebCrawler</RootNamespace>
-    <AssemblyName>WebCrawler</AssemblyName>
+    <RootNamespace>WebCrawler.Core</RootNamespace>
+    <AssemblyName>WebCrawler.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,20 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Downloader.cs" />
+    <Compile Include="Harvester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
+    <Compile Include="Resolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Src\Aktores.Core\Aktores.Core.csproj">
       <Project>{9b1b6043-d044-4c7b-a6a7-713db3a9e1ab}</Project>
       <Name>Aktores.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WebCrawler.Core\WebCrawler.Core.csproj">
-      <Project>{fa39129e-7086-43e3-9804-6b2cd5462752}</Project>
-      <Name>WebCrawler.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

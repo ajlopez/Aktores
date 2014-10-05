@@ -1,4 +1,4 @@
-﻿namespace WebCrawler
+﻿namespace WebCrawler.Worker
 {
     using System;
     using System.Collections.Generic;
@@ -6,6 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using Aktores.Core;
+    using Aktores.Core.Communication;
     using Aktores.Core.Routing;
     using WebCrawler.Core;
 
@@ -13,16 +14,21 @@
     {
         static void Main(string[] args)
         {
+            Address address = new Address(args[0]);
+            string localaddress = address.ToString();
+
             ActorSystem system = new ActorSystem();
+            TcpServer host = new TcpServer(address.HostName, address.Port, system);
+            host.Start();
 
-            Resolver resolver = new Resolver();
-            //Downloader downloader = new Downloader();
+            Address serveraddress = new Address(args[1]);
+            string remoteaddress = serveraddress.ToString();
+
             Harvester harvester = new Harvester();
-
             RouterActor router = new RouterActor();
 
-            ActorRef resolverref = system.ActorOf(resolver, "resolver");
-            //ActorRef downloaderref = system.ActorOf(downloader, "downloader");
+            ActorRef resolverref = system.ActorSelect(remoteaddress + "/resolver");
+            ActorRef remotedownloaderref = system.ActorSelect(remoteaddress + "/downloader");
             ActorRef downloaderref = system.ActorOf(router, "downloader");
             ActorRef harvesterref = system.ActorOf(harvester, "harvester");
 
@@ -34,12 +40,9 @@
                 router.Register(dlref);
             }
 
-            resolver.Downloader = downloaderref;
-            //downloader.Harvester = harvesterref;
             harvester.Resolver = resolverref;
 
-            foreach (var arg in args)
-                resolverref.Tell(arg);
+            remotedownloaderref.Tell(new RegisterActorMessage() { ActorPath = localaddress + "/downloader" });
         }
     }
 }

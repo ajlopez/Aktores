@@ -18,17 +18,19 @@
             Assert.AreEqual("sys", address.SystemName);
             Assert.AreEqual("localhost", address.HostName);
             Assert.AreEqual(3000, address.Port);
+            Assert.AreEqual("aktores.tcp://sys@localhost:3000", address.ToString());
         }
 
         [TestMethod]
         public void SplitPartialPathInParts()
         {
-            var path = new Address("//sys2");
+            var address = new Address("//sys2");
 
-            Assert.AreEqual("aktores", path.Protocol);
-            Assert.AreEqual("sys2", path.SystemName);
-            Assert.IsNull(path.HostName);
-            Assert.AreEqual(0, path.Port);
+            Assert.AreEqual("aktores.tcp", address.Protocol);
+            Assert.AreEqual("sys2", address.SystemName);
+            Assert.AreEqual("localhost", address.HostName);
+            Assert.AreEqual(0, address.Port);
+            Assert.AreEqual("aktores.tcp://sys2@localhost", address.ToString());
         }
 
         [TestMethod]
@@ -60,6 +62,7 @@
             Assert.AreEqual("sys", address.SystemName);
             Assert.AreEqual("localhost", address.HostName);
             Assert.AreEqual(3000, address.Port);
+            Assert.AreEqual("aktores.tcp://sys@localhost:3000", address.ToString());
 
             var path = Address.GetActorPath(fullname);
 

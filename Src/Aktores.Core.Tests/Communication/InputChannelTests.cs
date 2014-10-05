@@ -151,11 +151,6 @@
 
             InputChannel channel = new InputChannel(new BinaryReader(stream));
 
-            var ts = channel.Read();
-
-            Assert.IsNotNull(ts);
-            Assert.IsInstanceOfType(ts, typeof(TypeSerializer));
-
             var result = channel.Read();
 
             Assert.IsNotNull(result);
@@ -193,11 +188,6 @@
             stream.Seek(0, SeekOrigin.Begin);
 
             InputChannel channel = new InputChannel(new BinaryReader(stream));
-
-            var ts = channel.Read();
-
-            Assert.IsNotNull(ts);
-            Assert.IsInstanceOfType(ts, typeof(TypeSerializer));
 
             var result = channel.Read();
 

@@ -1,4 +1,4 @@
-namespace WebCrawler
+namespace WebCrawler.Core
 {
     using System;
     using System.Globalization;

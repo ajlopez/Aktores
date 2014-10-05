@@ -22,7 +22,7 @@
                 path = path.Substring(p + 1);
             }
             else
-                this.protocol = "aktores";
+                this.protocol = "aktores.tcp";
 
             if (path.StartsWith("//"))
             {
@@ -46,7 +46,10 @@
                         this.hostname = location;
                 }
                 else
+                {
                     this.systemname = location;
+                    this.hostname = "localhost";
+                }
             }
             else
                 this.systemname = "sys";
@@ -59,6 +62,16 @@
         public string HostName { get { return this.hostname; } }
 
         public int Port { get { return this.port; } }
+
+        public override string ToString()
+        {
+            string url = string.Format("{0}://{1}@{2}", this.protocol, this.systemname, this.hostname);
+
+            if (this.port > 0)
+                url = string.Format("{0}:{1}", url, port);
+
+            return url;
+        }
 
         public static Address GetAddress(string path)
         {

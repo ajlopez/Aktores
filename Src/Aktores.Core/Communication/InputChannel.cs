@@ -16,7 +16,7 @@
             this.reader = reader;
         }
 
-        public object Read()
+        public object Read(bool retserializer = false)
         {
             byte type = this.reader.ReadByte();
 
@@ -61,7 +61,11 @@
 
                     var serializer = new TypeSerializer(name, properties);
                     this.serializers.Add(serializer);
-                    return serializer;
+
+                    if (retserializer)
+                        return serializer;
+                    else
+                        return this.Read();
                 case (byte)Types.Object:
                     var nserializer = this.reader.ReadInt16();
                     return this.serializers[nserializer].DeserializerObject(this);
