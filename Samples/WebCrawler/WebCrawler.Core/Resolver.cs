@@ -19,8 +19,6 @@ namespace WebCrawler.Core
 
         public void Process(string url)
         {
-            Console.WriteLine("[Resolver] processing " + url);
-
             Uri target;
                 
             try
@@ -29,16 +27,12 @@ namespace WebCrawler.Core
             }
             catch (Exception ex) 
             {
-                Console.WriteLine(
-                    string.Format(CultureInfo.InvariantCulture, "URL rejected {0}: not an URI", url));
                 return;
             }
 
             if ((target.Scheme != Uri.UriSchemeHttp) &&
                 (target.Scheme != Uri.UriSchemeHttps))
             {                
-                Console.WriteLine(
-                    string.Format(CultureInfo.InvariantCulture, "URL rejected {0}: unsupported protocol", url));
                 return;
             }
 
@@ -46,13 +40,13 @@ namespace WebCrawler.Core
                 this.host = target.Host;
             else if (this.host != target.Host)
             {
-                Console.WriteLine(
-                    string.Format(CultureInfo.InvariantCulture, "URL rejected {0}: external host", url));
                 return;
             }
 
             if (this.downloadedAddresses.Contains(target))
                 return;
+
+            Console.WriteLine("[Resolver] processing " + url);
 
             this.downloadedAddresses.Add(target);
                     

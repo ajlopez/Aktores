@@ -29,20 +29,17 @@
 
             ActorRef resolverref = system.ActorSelect(remoteaddress + "/resolver");
             ActorRef remotedownloaderref = system.ActorSelect(remoteaddress + "/downloader");
-            ActorRef downloaderref = system.ActorOf(router, "downloader");
             ActorRef harvesterref = system.ActorOf(harvester, "harvester");
+
+            harvester.Resolver = resolverref;
 
             for (int k = 1; k <= 10; k++)
             {
                 Downloader downloader = new Downloader();
                 downloader.Harvester = harvesterref;
                 ActorRef dlref = system.ActorOf(downloader);
-                router.Register(dlref);
+                remotedownloaderref.Tell(new RegisterActorMessage() { ActorPath = localaddress + dlref.Path.ToString() });
             }
-
-            harvester.Resolver = resolverref;
-
-            remotedownloaderref.Tell(new RegisterActorMessage() { ActorPath = localaddress + "/downloader" });
         }
     }
 }

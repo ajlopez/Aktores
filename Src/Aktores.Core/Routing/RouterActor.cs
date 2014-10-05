@@ -24,8 +24,20 @@
                 return;
             }
 
-            var n = this.random.Next(this.childrefs.Count);
-            this.childrefs[n].Tell(message, this.Sender);
+            int n = 0;
+
+            while (this.childrefs.Count > 0)
+                try
+                {
+                    n = this.random.Next(this.childrefs.Count);
+                    this.childrefs[n].Tell(message, this.Sender);
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine(ex.StackTrace);
+                    this.childrefs.RemoveAt(n);
+                }
         }
     }
 }

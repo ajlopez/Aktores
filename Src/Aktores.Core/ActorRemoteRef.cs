@@ -10,6 +10,7 @@
     {
         private TcpClient remote;
         private string pathstring;
+        private bool failed;
 
         internal ActorRemoteRef(TcpClient remote, ActorPath path)
             : base(path)
@@ -20,7 +21,18 @@
 
         public override void Tell(object message, ActorRef sender = null)
         {
-            this.remote.Tell(this.pathstring, message);
+            if (failed)
+                return;
+
+            try
+            {
+                this.remote.Tell(this.pathstring, message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                failed = true;
+            }
         }
     }
 }
