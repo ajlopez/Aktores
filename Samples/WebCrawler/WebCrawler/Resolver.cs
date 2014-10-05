@@ -8,6 +8,7 @@ namespace WebCrawler
     public class Resolver : Actor
     {
         private List<Uri> downloadedAddresses;
+        private string host;
 
         public Resolver() 
         {
@@ -19,14 +20,34 @@ namespace WebCrawler
         public void Process(string url)
         {
             Console.WriteLine("[Resolver] processing " + url);
-            
-            Uri target = new Uri(url);
+
+            Uri target;
+                
+            try
+            {
+                target = new Uri(url);
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine(
+                    string.Format(CultureInfo.InvariantCulture, "URL rejected {0}: not an URI", url));
+                return;
+            }
 
             if ((target.Scheme != Uri.UriSchemeHttp) &&
                 (target.Scheme != Uri.UriSchemeHttps))
             {                
                 Console.WriteLine(
                     string.Format(CultureInfo.InvariantCulture, "URL rejected {0}: unsupported protocol", url));
+                return;
+            }
+
+            if (this.host == null)
+                this.host = target.Host;
+            else if (this.host != target.Host)
+            {
+                Console.WriteLine(
+                    string.Format(CultureInfo.InvariantCulture, "URL rejected {0}: external host", url));
                 return;
             }
 
