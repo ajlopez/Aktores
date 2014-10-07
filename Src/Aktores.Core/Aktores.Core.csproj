@@ -72,7 +72,9 @@
     <Compile Include="Worker.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ActorContext.cd" />
     <None Include="Actors.cd" />
+    <None Include="ActorSystem.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

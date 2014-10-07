@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Aktores.Core.ActorRefFactory">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AEEAAAABAAAAAAAAAAABAgAAAAABgIEAAAAAEAACAAA=</HashCode>
+      <FileName>ActorRefFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Aktores.Core.ActorSystem">
+    <Position X="3.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAIgAABBAwAAAAAAAAEAIAAAAAACAAA=</HashCode>
+      <FileName>ActorSystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

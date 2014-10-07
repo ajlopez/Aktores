@@ -8,20 +8,16 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Aktores.Core.ActorRef">
-    <Position X="3" Y="0.75" Width="1.5" />
+    <Position X="2.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAgACEAIAAAAAAAAAAAAAACAAABAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAIAAAACAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
       <FileName>ActorRef.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="actor" />
-      <Field Name="mailbox" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Aktores.Core.Mailbox">
-    <Position X="5.25" Y="0.75" Width="1.5" />
+    <Position X="4" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <HashCode>AAIAAAAAAAAAAACAAABAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
       <FileName>Mailbox.cs</FileName>
     </TypeIdentifier>
   </Class>
