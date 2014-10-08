@@ -54,7 +54,7 @@
                 if (this.noresults >= this.nomessages)
                 {
                     this.listener.Tell(new PiAproximation(pi));
-                    this.Context.Stop(this.Self);
+                    this.Context.ActorSystem.Stop(this.Self);
                 }
 
                 return;

@@ -15,7 +15,7 @@
             ActorSystem system = new ActorSystem();
 
             var listener = system.ActorOf(typeof(Listener));
-            var master = system.ActorOf(new Master(10, 100, 10, listener));
+            var master = system.ActorOf(new Master(10, 1000, 10, listener));
 
             master.Tell(new Calculate());
         }

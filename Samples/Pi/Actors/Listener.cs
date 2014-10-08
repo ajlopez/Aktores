@@ -14,7 +14,7 @@
             double pi = ((PiAproximation)message).Value;
 
             Console.WriteLine(pi);
-            this.Context.Shutdown();
+            this.Context.ActorSystem.Shutdown();
         }
     }
 }
