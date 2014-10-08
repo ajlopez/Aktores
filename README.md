@@ -10,6 +10,8 @@ Work in Progress
 
 ## References
 
+Presentation [Intro to Aktores, Actor Model in C#](http://ajlopez.github.io/Talks/AktoresIntro/index.html#/)
+
 ### Akka
 
 - [Akka](http://akka.io/)
