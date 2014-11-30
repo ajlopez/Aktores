@@ -48,11 +48,6 @@
 
         public ActorPath Parent { get { return this.parent; } }
 
-        public override string ToString()
-        {
-            return (this.parent == null ? string.Empty : this.parent.ToString()) + "/" + name;
-        }
-
         public static bool IsName(string path)
         {
             if (string.IsNullOrWhiteSpace(path))
@@ -73,6 +68,11 @@
                 return true;
 
             return false;
+        }
+
+        public override string ToString()
+        {
+            return (this.parent == null ? string.Empty : this.parent.ToString()) + "/" + this.name;
         }
     }
 }

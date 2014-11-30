@@ -18,7 +18,7 @@
 
         public TcpServer(string host, int port, ActorSystem system)
         {
-            //IPAddress ipaddress = Dns.GetHostEntry(host).AddressList[0];
+            ////IPAddress ipaddress = Dns.GetHostEntry(host).AddressList[0];
             IPAddress ipaddress = Dns.Resolve(host).AddressList[0];
             this.listener = new TcpListener(ipaddress, port);
             this.system = system;
@@ -29,8 +29,10 @@
             this.listener.Start();
             this.running = true;
 
-            (new Thread(delegate () {
-                while (this.running) {
+            (new Thread(delegate()
+            {
+                while (this.running) 
+                {
                     try
                     {
                         var client = this.listener.AcceptTcpClient();

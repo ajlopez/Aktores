@@ -43,7 +43,17 @@
 
             for (int k = 0; k < 100; k++)
             {
-                Actor actor = new LambdaActor(c => { lock (system) { total += (int)c; } if (total >= 10) wait.Set(); });
+                Actor actor = new LambdaActor(c => 
+                { 
+                    lock (system) 
+                    { 
+                        total += (int)c; 
+                    } 
+                    
+                    if (total >= 10) 
+                        wait.Set(); 
+                });
+
                 var actorref = system.ActorOf(actor);
                 router.Register(actorref);
             }

@@ -16,7 +16,6 @@
         private int port;
         private System.Net.Sockets.TcpClient client;
         private OutputChannel channel;
-        private bool running;
 
         public TcpClient(string host, int port)
         {
@@ -28,13 +27,11 @@
         public void Start()
         {
             this.client.Connect(this.host, this.port);
-            this.running = true;
             this.channel = new OutputChannel(new BinaryWriter(this.client.GetStream()));
         }
 
         public void Stop()
         {
-            this.running = false;
             this.client.Close();
         }
 

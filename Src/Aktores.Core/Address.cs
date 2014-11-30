@@ -63,16 +63,6 @@
 
         public int Port { get { return this.port; } }
 
-        public override string ToString()
-        {
-            string url = string.Format("{0}://{1}@{2}", this.protocol, this.systemname, this.hostname);
-
-            if (this.port > 0)
-                url = string.Format("{0}:{1}", url, port);
-
-            return url;
-        }
-
         public static Address GetAddress(string path)
         {
             int p = path.IndexOf("//");
@@ -101,6 +91,16 @@
                 return null;
 
             return new ActorPath(path.Substring(pa + 1));
+        }
+
+        public override string ToString()
+        {
+            string url = string.Format("{0}://{1}@{2}", this.protocol, this.systemname, this.hostname);
+
+            if (this.port > 0)
+                url = string.Format("{0}:{1}", url, this.port);
+
+            return url;
         }
     }
 }

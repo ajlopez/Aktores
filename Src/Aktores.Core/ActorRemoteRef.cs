@@ -21,7 +21,7 @@
 
         public override void Tell(object message, ActorRef sender = null)
         {
-            if (failed)
+            if (this.failed)
                 return;
 
             try
@@ -31,7 +31,7 @@
             catch (Exception ex)
             {
                 Console.WriteLine(ex.StackTrace);
-                failed = true;
+                this.failed = true;
             }
         }
     }
